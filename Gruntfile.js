@@ -6,6 +6,10 @@
 // 'test/spec/{,*/}*.js'
 // use this if you want to recursively match all subfolders:
 // 'test/spec/**/*.js'
+var lrSnippet = require('grunt-contrib-livereload/lib/utils').livereloadSnippet;
+var mountFolder = function (connect, dir) {
+    return connect.static(require('path').resolve(dir));
+};
 
 module.exports = function (grunt) {
 
@@ -14,6 +18,8 @@ module.exports = function (grunt) {
 
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
+
+  var modRewrite = require('connect-modrewrite');
 
   // Configurable paths for the application
   var appConfig = {
@@ -76,12 +82,18 @@ module.exports = function (grunt) {
           open: true,
           middleware: function (connect) {
             return [
-              connect.static('.tmp'),
+              //connect.static('.tmp'),
               connect().use(
                 '/bower_components',
                 connect.static('./bower_components')
               ),
-              connect.static(appConfig.app)
+              //connect.static(appConfig.app),
+                lrSnippet,
+                modRewrite([
+                    '!\\.html|\\.js|\\.css|\\woff|\\ttf|\\png|\\swf$ /index.html'
+                ]),
+                mountFolder(connect, '.tmp'),
+                mountFolder(connect, appConfig.app)
             ];
           }
         }

@@ -5,6 +5,7 @@
     "express": "^4.8.8"
   },
   "devDependencies": {
+    "connect-modrewrite": "^0.7.9",
     "grunt": "^0.4.1",
     "grunt-autoprefixer": "^0.7.3",
     "grunt-concurrent": "^0.5.0",
@@ -17,6 +18,7 @@
     "grunt-contrib-imagemin": "^0.7.0",
     "grunt-contrib-jshint": "^0.10.0",
     "grunt-contrib-less": "^0.11.4",
+    "grunt-contrib-livereload": "^0.1.2",
     "grunt-contrib-uglify": "^0.4.0",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-filerev": "^0.2.1",
