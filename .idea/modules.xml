@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/AllegroIO.iml" filepath="$PROJECT_DIR$/.idea/AllegroIO.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/RedisCacheClear.iml" filepath="$PROJECT_DIR$/.idea/RedisCacheClear.iml" />
     </modules>
   </component>
 </project>

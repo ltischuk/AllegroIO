@@ -1,0 +1,4 @@
+<ul class="nav nav-pills pull-right">
+    <li data-ng-repeat="menuItem in menuItems" data-ng-class="{'active' : isActiveMenuItem($index)}"><a>{{menuItem.name}}</a></li>
+</ul>
+<h3 class="text-muted" data-ng-bind="mainAppName"></h3>

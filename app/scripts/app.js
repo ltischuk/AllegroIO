@@ -16,7 +16,7 @@ angular
   .config(function ($locationProvider, $stateProvider, $urlRouterProvider) {
 
 
-        $locationProvider.html5Mode(true);
+
 
         $stateProvider
             .state('home', {
@@ -26,4 +26,6 @@ angular
             });
 
         $urlRouterProvider.otherwise('/home');
+
+        $locationProvider.html5Mode(true);
     });
