@@ -8,6 +8,9 @@
  * Controller of the allegroIoApp
  */
 angular.module('allegroIoApp')
-    .controller('ProjectsCtrl', function ($scope) {
+    .controller('ProjectsCtrl',
+        function ($scope,
+                  ProjectSvc) {
 
-    });
+            $scope.projectList = ProjectSvc.projectList;
+        });

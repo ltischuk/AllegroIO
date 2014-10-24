@@ -1,11 +1,11 @@
 'use strict';
 
 /**
- * @ngdoc overview
- * @name allegroIoApp
- * @description
- * # allegroIoApp
- *
+ * app specific modules
+ */
+
+ angular.module('ngcrop', []);
+ /*
  * Main module of the application.
  */
 angular
@@ -24,6 +24,11 @@ angular
             })
             .state('projects', {
                 url: '/projects',
+                templateUrl: '/views/project.html',
+                controller: 'ProjectsCtrl'
+            })
+            .state('projects.ngcrop', {
+                url: '/projects.ngcrop',
                 templateUrl: '/views/project.html',
                 controller: 'ProjectsCtrl'
             });

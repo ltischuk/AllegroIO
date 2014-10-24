@@ -1,1 +1,10 @@
-<div>hello laura</div>
+<div>
+    <div>
+        <ul class="">
+            <li data-ng-repeat="project in projectList"
+                data-ng-click="goToState($index)">
+                <a>{{project.name}}</a>
+            </li>
+        </ul>
+    </div>
+</div>

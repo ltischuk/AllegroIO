@@ -11,7 +11,7 @@
  * Service of the allegroIoApp
  */
 angular.module('allegroIoApp')
-    .factory('NavigationSrv', function () {
+    .factory('NavigationSvc', function NavigationSvcFactory () {
         var service = {};
         service.mainAppName = 'AllegroIO';
         service.menuItems = [{name: 'Home', stateName:'home' },
