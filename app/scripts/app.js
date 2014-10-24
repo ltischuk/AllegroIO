@@ -10,19 +10,22 @@
  */
 angular
   .module('allegroIoApp',
-    ['ui.router']
+    ['ui.router',
+     'ngcrop']
 
     )
   .config(function ($locationProvider, $stateProvider, $urlRouterProvider) {
-
-
-
 
         $stateProvider
             .state('home', {
                 url: '/home',
                 templateUrl: '/views/main.html',
                 controller: 'MainCtrl'
+            })
+            .state('projects', {
+                url: '/projects',
+                templateUrl: '/views/project.html',
+                controller: 'ProjectsCtrl'
             });
 
         $urlRouterProvider.otherwise('/home');

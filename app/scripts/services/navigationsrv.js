@@ -14,7 +14,9 @@ angular.module('allegroIoApp')
     .factory('NavigationSrv', function () {
         var service = {};
         service.mainAppName = 'AllegroIO';
-        service.menuItems = [{name: 'Home'}, {name: 'Projects'}, {name: 'Contact'}];
+        service.menuItems = [{name: 'Home', stateName:'home' },
+                             {name: 'Projects', stateName: 'projects'},
+                             {name: 'Contact', stateName:'home'}];
 
         return service;
     }

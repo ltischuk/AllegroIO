@@ -11,7 +11,9 @@
  * Directive for navigation of the allegroIoApp
  */
 angular.module('allegroIoApp')
-    .directive('navigationDir', function (NavigationSrv) {
+    .directive('navigationDir',
+        function (NavigationSrv,
+                  $state) {
 
         return {
             restrict: 'AE',
@@ -26,6 +28,12 @@ angular.module('allegroIoApp')
                 scope.isActiveMenuItem = function($index){
                     return (scope.menuItems[$index] === scope.activeMenuItem);
                 };
+
+                scope.goToState = function($index){
+                    scope.activeMenuItem = scope.menuItems[$index];
+                    $state.go(scope.menuItems[$index].stateName);
+                }
+
             }
         };
 
