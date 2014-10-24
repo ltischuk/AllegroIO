@@ -6,14 +6,14 @@ angular
     .directive('rectAreaSelector',
         function(){
             return {
-                restrict: 'A', scope: {
-                }, link: function (scope, element, attrs) {
+                restrict: 'A',
+                scope: {
+                },
+                templateUrl: '<div></div>',
+                link: function (scope, element) {
 
                     /*Starting base left/top position*/
                     var pos = [0, 0];
-
-                    /*Dashed-line selection div*/
-                    var sel = document.getElementById('sel');
 
                     /*variables to guide the selection*/
                     var isSelection,
@@ -72,11 +72,11 @@ angular
                         y1 = e.pageY - pos[1];
 
                         //set the styles of the selection block and display
-                        sel.style.setProperty('display', 'block');
-                        sel.style.setProperty('left', x1 + 'px');
-                        sel.style.setProperty('top', y1 + 'px');
-                        sel.style.setProperty('width', '0px');
-                        sel.style.setProperty('height', '0px');
+                        element.style.setProperty('display', 'block');
+                        element.style.setProperty('left', x1 + 'px');
+                        element.style.setProperty('top', y1 + 'px');
+                        element.style.setProperty('width', '0px');
+                        element.style.setProperty('height', '0px');
 
                     }
 
@@ -102,8 +102,8 @@ angular
 
                                 xDif = Math.abs(x2 - x1);
                                 yDif = Math.abs(y2 - y1);
-                                sel.style.setProperty('width', xDif + 'px');
-                                sel.style.setProperty('height', yDif + 'px');
+                                element.style.setProperty('width', xDif + 'px');
+                                element.style.setProperty('height', yDif + 'px');
 
 
                             } else if (x2 > x1 && y2 < y1) { //moving top right selection
@@ -114,9 +114,9 @@ angular
 
                                 xDif = Math.abs(y1 - y2);
                                 yDif = Math.abs(x2 - x1);
-                                sel.style.setProperty('top', y2 + 'px');
-                                sel.style.setProperty('width', yDif + 'px');
-                                sel.style.setProperty('height', xDif + 'px');
+                                element.style.setProperty('top', y2 + 'px');
+                                element.style.setProperty('width', yDif + 'px');
+                                element.style.setProperty('height', xDif + 'px');
 
 
                             }
@@ -161,11 +161,11 @@ angular
                      */
                     function resetSelectionDiv() {
                         isSelection = false;
-                        sel.style.setProperty('display', 'none');
-                        sel.style.setProperty('left', '0px');
-                        sel.style.setProperty('top', '0px');
-                        sel.style.setProperty('width', '0px');
-                        sel.style.setProperty('height', '0px');
+                        element.style.setProperty('display', 'none');
+                        element.style.setProperty('left', '0px');
+                        element.style.setProperty('top', '0px');
+                        element.style.setProperty('width', '0px');
+                        element.style.setProperty('height', '0px');
                     }
 
                 }
