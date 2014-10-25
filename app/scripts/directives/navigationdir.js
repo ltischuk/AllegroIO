@@ -32,7 +32,7 @@ angular.module('allegroIoApp')
                 scope.goToState = function($index){
                     scope.activeMenuItem = scope.menuItems[$index];
                     $state.go(scope.menuItems[$index].stateName);
-                }
+                };
 
             }
         };

@@ -2,8 +2,8 @@
     <div>
         <ul class="">
             <li data-ng-repeat="project in projectList"
-                data-ng-click="goToState($index)">
-                <a>{{project.name}}</a>
+                data-ng-click="goToState(project.getProjectStateName())">
+                <a>{{project.getProjectName()}}</a>
             </li>
         </ul>
     </div>

@@ -10,7 +10,13 @@
 angular.module('allegroIoApp')
     .controller('ProjectsCtrl',
         function ($scope,
-                  ProjectSvc) {
+                  $state,
+                  ProjectListSvc) {
 
-            $scope.projectList = ProjectSvc.projectList;
+            $scope.projectList = ProjectListSvc.projectList;
+
+            $scope.goToState = function(stateName){
+                $state.go(stateName);
+            };
+
         });

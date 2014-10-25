@@ -27,10 +27,10 @@ angular
                 templateUrl: '/views/project.html',
                 controller: 'ProjectsCtrl'
             })
-            .state('projects.ngcrop', {
-                url: '/projects.ngcrop',
-                templateUrl: '/views/project.html',
-                controller: 'ProjectsCtrl'
+            .state('ngcropdemo', {
+                url: '/ngcropdemo',
+                templateUrl: '/views/ngcropdemo.html',
+                controller: 'NgCropDemoCtrl'
             });
 
         $urlRouterProvider.otherwise('/home');
