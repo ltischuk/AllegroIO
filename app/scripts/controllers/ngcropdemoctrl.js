@@ -11,7 +11,8 @@ angular.module('allegroIoApp')
     .controller('NgCropDemoCtrl',
     function ($scope) {
 
-        $scope.image = undefined;
         $scope.headerTitle = 'Demo of NgCrop for Cropping Images';
+        $scope.image = undefined;
+        $scope.ngCropActivated = false;
 
     });
