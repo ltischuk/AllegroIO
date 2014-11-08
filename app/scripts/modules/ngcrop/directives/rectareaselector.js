@@ -6,10 +6,10 @@ angular
     .directive('rectAreaSelector',
         function(){
             return {
-                restrict: 'A',
+                restrict: 'E',
                 scope: {
                 },
-                templateUrl: '<div></div>',
+                templateUrl: '<div class="ic-crop-selection" id="sel"></div>',
                 link: function (scope, element) {
 
                     /*Dashed-line selection div insert dynamically on the DOM*/
@@ -138,7 +138,7 @@ angular
                                 var styles = {
                                     top:  y2 + 'px',
                                     width: yDif + 'px',
-                                    height :xDif + 'px'
+                                    height: xDif + 'px'
 
                                 }
                                 //set the styles of the
