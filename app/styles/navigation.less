@@ -11,7 +11,7 @@
   //width: 960px;
 
   .rectangle {
-    background: #e5592e;
+    background: #13184C;
     height: 62px;
     position: relative;
     -moz-box-shadow: 0px 0px 4px rgba(0,0,0,0.55);
@@ -24,7 +24,7 @@
   }
 
   .l-triangle-top {
-    border-color: #d9542b transparent transparent;
+    border-color: #111644 transparent transparent;
     border-style:solid;
     border-width:50px;
     height:0px;
@@ -33,10 +33,15 @@
     float: left;
     top: 1px;
     left: -50px;
+
+    @media (max-width: 836px) {
+      display: none;
+    }
+
   }
 
   .l-triangle-bottom {
-    border-color: transparent transparent #d9542b;
+    border-color: transparent transparent #111644;
     border-style:solid;
     border-width:50px;
     height:0px;
@@ -45,10 +50,14 @@
     float: left;
     top: -40px;
     left: -150px;
+
+    @media (max-width: 836px) {
+      display: none;
+    }
   }
 
   .r-triangle-top {
-    border-color: #d9542b transparent transparent;
+    border-color: #111644 transparent transparent;
     border-style:solid;
     border-width:50px;
     height:0px;
@@ -57,10 +66,14 @@
     float: right;
     right: -55px;
     top: -103px;
+
+    @media (max-width: 836px) {
+      display: none;
+    }
   }
 
   .r-triangle-bottom {
-    border-color: transparent transparent #d9542b;
+    border-color: transparent transparent #111644;
     border-style:solid;
     border-width:50px;
     height:0px;
@@ -69,6 +82,10 @@
     float: right;
     top: -146px;
     right: -153px;
+
+    @media (max-width: 836px) {
+      display: none;
+    }
   }
 
 
@@ -83,12 +100,19 @@
     margin: 1em;
 
     a{
-     // text-shadow: 0 2px 1px rgba(0,0,0,0.5);
+      text-shadow: 0 2px 1px rgba(0,0,0,0.5);
       display: block;
       text-decoration: none;
       color: #ffffff;
-      font-size: 1.6em;
+      font-size: 1.2em;
       margin: 0 .5em;
+
+      &:hover {
+        margin-top: 2px;
+        cursor:pointer;
+        color: #B2B2B2;
+
+      }
     }
   }
 }
