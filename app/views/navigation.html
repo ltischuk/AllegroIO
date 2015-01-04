@@ -1,7 +1,17 @@
-<ul class="nav nav-pills pull-right">
-    <li data-ng-repeat="menuItem in menuItems"
-        data-ng-click="goToState($index)" data-ng-class="{'active' : isActiveMenuItem($index)}">
-        <a>{{menuItem.name}}</a>
-    </li>
-</ul>
-<h3 class="text-muted" data-ng-bind="mainAppName"></h3>
+<div id="navbar_container">
+  <!-- the ribbon body -->
+  <!-- the left side of the fork effect -->
+  <div class="l-triangle-top"></div>
+  <div class="l-triangle-bottom"></div>
+  <div class="rectangle">
+    <ul class="" id="navbar">
+        <li data-ng-repeat="menuItem in menuItems"
+            data-ng-click="goToState($index)" data-ng-class="{'active' : isActiveMenuItem($index)}">
+            <a>{{menuItem.name}}</a>
+        </li>
+    </ul>
+  </div>
+  <!-- the right side of the fork effect -->
+  <div class="r-triangle-top"></div>
+  <div class="r-triangle-bottom"></div>
+</div>

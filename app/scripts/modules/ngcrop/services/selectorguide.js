@@ -22,7 +22,7 @@ angular.module('ngcrop')
             }
 
 
-            factory.SelectorGuide.prototype.initializePoint = function(mouseDownEvent ){
+            factory.SelectorGuide.prototype.generateMouseDownStyle = function(mouseDownEvent ){
                 this.startingPoint[0] = mouseDownEvent.pageX - this.boundingRectangle.left;
                 this.startingPoint[1] = this.boundingRectangle.top;
                 this.x1 = angular.copy(this.startingPoint[0]);
