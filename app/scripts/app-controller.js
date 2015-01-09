@@ -4,14 +4,10 @@
  * @ngdoc function
  * @name allegroIoApp.controller:MainCtrl
  * @description
- * # MainCtrl
+ * # AppController
  * Controller of the allegroIoApp
  */
 angular.module('allegroIoApp')
-  .controller('MainCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('AppController', function ($scope) {
+
   });

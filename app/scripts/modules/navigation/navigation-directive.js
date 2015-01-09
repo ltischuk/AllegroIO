@@ -12,17 +12,17 @@
  */
 angular.module('allegroIoApp')
     .directive('navigationDir',
-        function (NavigationSvc,
+        function (NavigationService,
                   $state) {
 
         return {
             restrict: 'AE',
             scope: {
             },
-            templateUrl: '/views/navigation.html',
+            templateUrl: '/scripts/modules/navigation/partials/navigation.html',
             link: function (scope) {
-                scope.mainAppName = NavigationSvc.mainAppName;
-                scope.menuItems = NavigationSvc.menuItems;
+                scope.mainAppName = NavigationService.mainAppName;
+                scope.menuItems = NavigationService.menuItems;
                 scope.activeMenuItem = scope.menuItems[0];
 
                 scope.isActiveMenuItem = function($index){

@@ -19,18 +19,23 @@ angular
         $stateProvider
             .state('home', {
                 url: '/home',
-                templateUrl: '/views/main.html',
-                controller: 'MainCtrl'
+                templateUrl: '/partials/app.html',
+                controller: 'AppController'
             })
             .state('projects', {
+                abstract: true,
                 url: '/projects',
-                templateUrl: '/views/project.html',
-                controller: 'ProjectsCtrl'
+                template: '<div ui-view></div>'
             })
-            .state('ngcropdemo', {
+            .state('projects.selection',{
+              url: '/selection',
+              templateUrl: '/scripts/modules/projects/partials/selection.html',
+              controller: 'ProjectsController'
+            })
+            .state('projects.ngcropdemo', {
                 url: '/ngcropdemo',
-                templateUrl: '/views/ngcropdemo.html',
-                controller: 'NgCropDemoCtrl'
+                templateUrl: '/scripts/modules/projects/partials/ngcropdemo.html',
+                controller: 'NgCropDemoController'
             });
 
         $urlRouterProvider.otherwise('/home');

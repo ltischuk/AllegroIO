@@ -8,7 +8,7 @@
  * Controller of the allegroIoApp
  */
 angular.module('allegroIoApp')
-    .controller('NgCropDemoCtrl',
+    .controller('NgCropDemoController',
     function ($scope) {
 
         $scope.headerTitle = 'Demo of NgCrop for Cropping Images';

@@ -10,9 +10,9 @@
  * Service of the allegroIoApp
  */
 angular.module('allegroIoApp')
-    .service('ProjectListSvc', function ProjectList(Project) {
+    .service('ProjectListService', function ProjectList(Project) {
 
-        this.projectList = [new Project('ngcropdemo','ngcropdemo')];
+        this.projectList = [new Project('ngcropdemo')];
 
     }
 );

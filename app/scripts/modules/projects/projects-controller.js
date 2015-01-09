@@ -8,15 +8,15 @@
  * Controller of the allegroIoApp
  */
 angular.module('allegroIoApp')
-    .controller('ProjectsCtrl',
+    .controller('ProjectsController',
         function ($scope,
                   $state,
-                  ProjectListSvc) {
+                  ProjectListService) {
 
-            $scope.projectList = ProjectListSvc.projectList;
+            $scope.projectList = ProjectListService.projectList;
 
             $scope.goToState = function(stateName){
-                $state.go(stateName);
+                $state.go('projects.' + stateName);
             };
 
         });

@@ -11,11 +11,11 @@
  * Service of the allegroIoApp
  */
 angular.module('allegroIoApp')
-    .factory('NavigationSvc', function NavigationSvcFactory () {
+    .factory('NavigationService', function NavigationService () {
         var service = {};
         service.mainAppName = 'AllegroIO';
         service.menuItems = [{name: 'Home', stateName:'home' },
-                             {name: 'Projects', stateName: 'projects'},
+                             {name: 'Projects', stateName: 'projects.selection'},
                              {name: 'Contact', stateName:'home'}];
 
         return service;

@@ -12,19 +12,14 @@
 angular.module('allegroIoApp')
     .factory('Project', function ProjectFactory() {
 
-        var Project = function(projectName, stateName){
+        var Project = function(projectName){
 
             this.projectName = projectName;
-            this.projectStateName = stateName;
         };
 
         //Prototype ensures that only one method for all instances is created
         Project.prototype.getProjectName = function(){
             return this.projectName;
-        };
-
-        Project.prototype.getProjectStateName = function(){
-            return this.projectStateName;
         };
 
         return Project;
