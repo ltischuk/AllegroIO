@@ -5,8 +5,11 @@
         </header>
 
         <div id="file-upload-view" data-ng-show="!ngCropActivated">
-
+          <div class="col-xs-12 col-md-6">
+            <fileupload upload-success="imageUploadSuccess(image)"></fileupload>
+          </div>
         </div>
+
         <div id="main-ngcrop-area-view" data-ng-show="ngCropActivated">
 
         </div>
