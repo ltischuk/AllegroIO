@@ -25,7 +25,7 @@ angular
             .state('projects', {
                 abstract: true,
                 url: '/projects',
-                template: '<div ui-view></div>'
+                template: '<ui-view></ui-view>'
             })
             .state('projects.selection',{
               url: '/selection',

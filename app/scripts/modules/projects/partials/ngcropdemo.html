@@ -1,17 +1,22 @@
 <div class="ng-crop-demo">
-    <div class="">
-        <header>
-            <h3 data-ng-bind="headerTitle"></h3>
-        </header>
-
-        <div id="file-upload-view" data-ng-show="!ngCropActivated">
-          <div class="col-xs-12 col-md-6">
-            <fileupload upload-success="imageUploadSuccess(image)"></fileupload>
-          </div>
-        </div>
-
-        <div id="main-ngcrop-area-view" data-ng-show="ngCropActivated">
-
-        </div>
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12">
+      <h3 class="center-content" data-ng-bind="headerTitle"></h3>
     </div>
+  </div>
+
+  <div class="row">
+    <div class="project-content-container">
+      <div id="file-upload-view" data-ng-show="!cropViewActivated">
+        <div class="col-xs-12 center-in-row" data-ng-bind="uploadFileInstructions"></div>
+        <div class="col-xs-12 col-sm-8 col-md-6 col-md-offset-3 col-sm-offset-2">
+          <fileupload upload-success="imageUploadSuccess(image)"></fileupload>
+        </div>
+      </div>
+      <div id="main-ngcrop-area-view" data-ng-show="cropViewActivated">
+
+      </div>
+    </div>
+  </div>
 </div>
+

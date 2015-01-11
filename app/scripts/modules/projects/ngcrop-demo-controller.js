@@ -12,8 +12,9 @@ angular.module('allegroIoApp')
     function ($scope) {
 
       $scope.headerTitle = 'Demo of NgCrop for Cropping Images';
+      $scope.uploadFileInstructions = 'Click the button to upload an image.';
       $scope.image = undefined;
-      $scope.ngCropActivated = false;
+      $scope.cropViewActivated = false;
 
 
       $scope.imageUploadSuccess = function(img){
