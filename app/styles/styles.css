@@ -42,6 +42,7 @@
 /* Make the masthead heading the same height as the navigation */
 #navbar-container {
   margin: 0 auto;
+  position: relative;
 }
 #navbar-container .rectangle {
   background: #13184C;
@@ -62,8 +63,7 @@
   border-width: 50px;
   height: 0px;
   width: 0px;
-  position: relative;
-  float: left;
+  position: absolute;
   top: 1px;
   left: -50px;
 }
@@ -78,10 +78,9 @@
   border-width: 50px;
   height: 0px;
   width: 0px;
-  position: relative;
-  float: left;
+  position: absolute;
   top: -40px;
-  left: -150px;
+  left: -54px;
 }
 @media (max-width: 836px) {
   #navbar-container .l-triangle-bottom {
@@ -94,10 +93,9 @@
   border-width: 50px;
   height: 0px;
   width: 0px;
-  position: relative;
-  float: right;
-  right: -55px;
-  top: -103px;
+  position: absolute;
+  right: -50px;
+  top: 1px;
 }
 @media (max-width: 836px) {
   #navbar-container .r-triangle-top {
@@ -110,10 +108,9 @@
   border-width: 50px;
   height: 0px;
   width: 0px;
-  position: relative;
-  float: right;
-  top: -146px;
-  right: -153px;
+  position: absolute;
+  top: -40px;
+  right: -51px;
 }
 @media (max-width: 836px) {
   #navbar-container .r-triangle-bottom {
