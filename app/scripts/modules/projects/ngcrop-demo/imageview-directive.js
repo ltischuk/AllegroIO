@@ -20,15 +20,13 @@ angular.module('allegroIoApp')
 
         var canvasElem = elem.find('canvas')[0];
         var ctx = canvasElem.getContext("2d");
-        var width = elem.find('canvas').parent()[0].clientWidth-3;
-        var height = elem.find('canvas').parent()[0].clientHeight-3;
 
         scope.drawImageOnCanvas = function(imageFileSrc){
 
           var img = new Image();
           img.onload = function () {
-            canvasElem.height = img.width;
-            canvasElem.width = img.height;
+
+            scaleCanvas(img.width, img.height);
             ctx.drawImage(img,0, 0);
             scope.$apply(function(){
               scope.cropViewActivated = true;
@@ -40,7 +38,9 @@ angular.module('allegroIoApp')
         }
 
         function scaleCanvas(w, h){
-
+          var factor = Math.min(1,(300/w),(300/h));
+          canvasElem.height = (w * factor)-3;
+          canvasElem.width = (h * factor)-3;
         }
 
       }
