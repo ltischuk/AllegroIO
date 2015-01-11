@@ -1,0 +1,13 @@
+<div class="row">
+  <div class="center-content col-xs-12 col-sm-12">
+    <input type="file" id="mainuploadfile" data-ng-show="false" accept="image/jpeg, image/JPG, image/JPEG, image/jpeg" filereader
+           on-file-upload="loadImageFile(file)" image-file="image" />
+    <button
+      on-tap
+      class="btn btn-primary btn-block"
+      data-ng-click="handleFileButtonClick('mainuploadfile')"
+      data-ng-bind="buttonTitle">
+    </button>
+  </div>
+</div>
+
