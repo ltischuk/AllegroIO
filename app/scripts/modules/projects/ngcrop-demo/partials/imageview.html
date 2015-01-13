@@ -1,9 +1,12 @@
 <div id="file-upload-view" data-ng-show="!cropViewActivated">
   <div class="col-xs-12 center-in-row" data-ng-bind="uploadFileInstructions"></div>
   <div class="col-xs-12 col-sm-8 col-md-6 col-md-offset-3 col-sm-offset-2">
-    <fileupload upload-success="drawImageOnCanvas(imageFileSrc)"></fileupload>
+    <fileupload upload-success="updateImageView(imageFileSrc)"></fileupload>
   </div>
 </div>
 <div id="main-ngcrop-area-view" data-ng-show="cropViewActivated">
-  <canvas></canvas>
+  <div id="image-container">
+    <img data-ng-src="{{origImageFile}}">
+    <crop-image orig-image="origImageFile"></crop-image>
+  </div>
 </div>

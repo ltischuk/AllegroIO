@@ -4,12 +4,14 @@
   <div class="l-triangle-top"></div>
   <div class="l-triangle-bottom"></div>
   <div class="rectangle">
-    <ul id="navbar">
+    <div class="center-content">
+      <ul id="navbar">
         <li data-ng-repeat="menuItem in menuItems"
             data-ng-click="goToState($index)" data-ng-class="{'active' : isActiveMenuItem($index)}">
-            <a>{{menuItem.name}}</a>
+          <a>{{menuItem.name}}</a>
         </li>
-    </ul>
+      </ul>
+    </div>
   </div>
   <!-- the right side of the fork effect -->
   <div class="r-triangle-top"></div>
