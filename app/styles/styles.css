@@ -119,6 +119,8 @@
 }
 #navbar {
   padding: 5px;
+  display: table;
+  margin: auto;
 }
 #navbar li {
   list-style: none;
@@ -148,6 +150,11 @@
   margin-left: auto;
   margin-right: auto;
   text-align: center;
+}
+.ng-crop-demo #image-container {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
 }
 .ng-crop-demo canvas {
   position: relative;
