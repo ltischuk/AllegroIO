@@ -3,8 +3,7 @@
   position: absolute;
   float: left;
   border-style: dashed;
-  width: 0px;
-  height: 0px;
-  z-index: 1;
+  display: none;
+  z-index: 100;
 
 }

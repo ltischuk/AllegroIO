@@ -16,17 +16,22 @@ angular
             template: '<div id="ngcrop-selector"></div>',
             link: function (scope, element, attrs) {
 
-              scope.$watch(
-                // This function returns the value being watched. It is called for each turn of the $digest loop
-                function() { return scope.origImage; },
-                // This is the change listener, called when the value returned from the above function changes
-                function(newValue, oldValue) {
-                  if ( newValue !== oldValue ) {
-                    // Only increment the counter if the value changed
+              console.log(element);
+              var x = element.parent().find('img');
+              //var cropSelector = angular.element('<div id="ngcrop-selector"></div>');
+              //element.append(cropSelector);
 
-                  }
-                }
-              );
+              x.on('load', function(){
+                console.log('x is changing');
+                element.css({
+
+                  display: 'block',
+                  width: 20 + 'px',
+                  height: 20 + 'px'
+                  //  height : e.target.height +'px'
+
+                });
+              })
 
             }
         }

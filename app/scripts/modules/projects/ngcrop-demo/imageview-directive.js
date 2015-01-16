@@ -22,15 +22,13 @@ angular.module('allegroIoApp')
         var container = imgElem.parent();
 
         imgElem.bind("load" , function(e){
-
-          console.log('in load');
           scope.$apply(function() {
 
-            container.css(
-              {
-               width: e.target.width +'px',
-               height : e.target.height +'px'
-             });
+           // container.css(
+             // {
+             //  width: e.target.width +'px',
+             //  height : e.target.height +'px'
+             //});
             scope.cropViewActivated = true;
           });
         });

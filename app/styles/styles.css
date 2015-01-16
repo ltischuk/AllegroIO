@@ -141,6 +141,9 @@
   cursor: pointer;
   color: #B2B2B2;
 }
+.ng-crop-demo {
+  min-height: 300px;
+}
 .ng-crop-demo h3 {
   text-align: center;
 }
@@ -150,9 +153,22 @@
   margin-left: auto;
   margin-right: auto;
   text-align: center;
+  position: relative;
+}
+.ng-crop-demo #main-ngcrop-area-view img {
+  position: relative;
+  margin-left: auto;
+  margin-right: auto;
 }
 .ng-crop-demo #image-container {
   position: relative;
+  margin-left: auto;
+  margin-right: auto;
+}
+.ng-crop-demo #image-container img {
+  position: relative;
+  width: 100%;
+  height: 100%;
   margin-left: auto;
   margin-right: auto;
 }
