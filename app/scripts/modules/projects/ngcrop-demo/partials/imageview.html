@@ -5,8 +5,10 @@
   </div>
 </div>
 <div id="main-ngcrop-area-view" data-ng-show="cropViewActivated">
-  <!--div id="image-container"-->
-    <img data-ng-src="{{origImageFile}}">
-    <crop-image></crop-image>
-  <!--/div-->
+  <div class="img-container">
+    <crop-image-two orig-image="origImageFile"></crop-image-two>
+    <!--img data-ng-src="{{origImageFile}}">
+      <span id="testsel"></span>
+      </img-->
+  </div>
 </div>

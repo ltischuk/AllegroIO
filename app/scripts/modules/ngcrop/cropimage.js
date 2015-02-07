@@ -16,22 +16,26 @@ angular
             template: '<div id="ngcrop-selector"></div>',
             link: function (scope, element, attrs) {
 
-              console.log(element);
-              var x = element.parent().find('img');
-              //var cropSelector = angular.element('<div id="ngcrop-selector"></div>');
-              //element.append(cropSelector);
+              var imgElement = element.parent().find('img');
+              var cropSelectorElement = element.children();
 
-              x.on('load', function(){
+              imgElement.on('load', function(e){
+
+                var dimension = (Math.min(e.target.width, e.target.height))/2;
                 console.log('x is changing');
-                element.css({
+                cropSelectorElement.css({
 
                   display: 'block',
-                  width: 20 + 'px',
-                  height: 20 + 'px'
-                  //  height : e.target.height +'px'
+                  width: dimension + 'px',
+                  height: dimension + 'px'
 
                 });
-              })
+              });
+
+              cropSelectorElement.on('mousedown', function(e){
+                e.preventDefault();
+
+              });
 
             }
         }
