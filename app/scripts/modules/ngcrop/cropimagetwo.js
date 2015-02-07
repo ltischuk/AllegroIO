@@ -43,26 +43,26 @@ angular
                     var dim = Math.min(selector.scaledWidth,selector.scaledHeight);
                     var topleft = (cvs[0].width / 2) - (dim/4);
                     selector.setDimensions(topleft, dim/4, dim/2);
-                    drawImageOnCanvas(newImage, false);
+                    drawImageOnCanvas( false);
 
                   }
                 }
               );
 
 
-              function drawImageOnCanvas(img, crop){
+              function drawImageOnCanvas(crop){
 
                 ctx.clearRect(0, 0, element.width, element.height);
 
                 var sX = crop ? (selector.x/selector.ratio) : 0;
                 var sY = crop ? (selector.y/selector.ratio) : 0;
-                var sWidth = crop ? (selector.length/selector.ratio) : img.width;
-                var sHeight = crop ? (selector.length/selector.ratio) : img.height;
+                var sWidth = crop ? (selector.length/selector.ratio) : scope.origImage.width;
+                var sHeight = crop ? (selector.length/selector.ratio) : scope.origImage.height;
                 var drawWidth = selector.scaledWidth;
                 var drawHeight = selector.scaledHeight;
 
                 //draw the image to the canvas this one is just for display
-                ctx.drawImage(img,sX,sY,sWidth,sHeight,0,0,drawWidth,drawHeight);
+                ctx.drawImage(scope.origImage,sX,sY,sWidth,sHeight,0,0,drawWidth,drawHeight);
 
                 if(!crop){
 
@@ -72,6 +72,85 @@ angular
 
                 }
               }
+
+              function handleMouseDown(e){
+
+                mouseX = e.offsetX;
+                mouseY = e.offsetY;
+                lastMouseX = mouseX;
+                lastMouseY = mouseY;
+                isSelecting = true;
+
+              }
+
+              function handleMouseMove(e){
+
+                var corner = 0;
+                mouseX = e.offsetX;
+                mouseY = e.offsetY;
+
+                if(selector.isInMoveZone(mouseX, mouseY)){
+                  cvs[0].style.cursor = 'move';
+                  moveCorner = false;
+                }
+                else{
+                  cvs[0].style.cursor = 'crosshair';
+                  corner =selector.nearestCorner(mouseX, mouseY);
+                  moveCorner = true;
+
+                }
+
+                if (isSelecting) {
+
+                  drawImageOnCanvas(false);
+
+                  var xdiff = mouseX - lastMouseX;
+                  var ydiff = mouseY - lastMouseY;
+
+                  selector.move(xdiff, ydiff, moveCorner, corner);
+                  lastMouseX = mouseX;
+                  lastMouseY = mouseY;
+                  drawImageOnCanvas(false);
+                }
+
+              }
+
+              function handleMouseUp(e){
+                isSelecting = false;
+                drawImageOnCanvas(false);
+              }
+
+              cvs.on('mousedown', function(e) {
+              //  if(scope.isReadyForCrop){
+
+                  handleMouseDown(e);
+              //  }
+              });
+
+              cvs.on('mouseup', function(e) {
+              //  if(scope.isReadyForCrop) {
+
+                  handleMouseUp(e);
+                  cvs[0].style.cursor = 'default';
+
+                //}
+              });
+
+              cvs.on('mousemove', function(e) {
+              //  if(scope.isReadyForCrop){
+
+                  handleMouseMove(e);
+
+              //  }
+              });
+
+              cvs.on('mouseout', function(e){
+
+                isSelecting = false;
+                moveCorner = false;
+                cvs[0].style.cursor = 'default';
+
+              });
 
 
             }

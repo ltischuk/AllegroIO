@@ -79,14 +79,14 @@ angular.module('ngcrop')
       move : function(xMove,yMove,corner, cornerPosition){
 
         if(corner){
-          if(cornerPosition == ImageCapturesEnumsService.canvasSection.TOP_LEFT){
+          if(cornerPosition == 1){
 
             this.x = this.allowedXMove(xMove) ? this.x + xMove : this.x;
             this.y = this.allowedYMove(yMove) ? this.y + yMove : this.y;
             this.length = this.allowedLengthMove(-(xMove + yMove)) ? this.length - (xMove + yMove) : this.length;
 
 
-          }else if(cornerPosition == ImageCapturesEnumsService.canvasSection.TOP_RIGHT){
+          }else if(cornerPosition == 2){
 
             this.y = this.allowedYMove(yMove) ? this.y + yMove :  this.y;
             if(xMove > 0 || yMove < 0){
@@ -95,7 +95,7 @@ angular.module('ngcrop')
               this.length = this.allowedLengthMove(-(Math.abs(xMove) + Math.abs(yMove)))? this.length - (Math.abs(xMove) + Math.abs(yMove)) : this.length;
             }
 
-          }else if(cornerPosition == ImageCapturesEnumsService.canvasSection.BOTTOM_LEFT){
+          }else if(cornerPosition == 3){
 
             this.x = this.allowedXMove(xMove) ? (this.x + xMove) : this.x;
             if(xMove < 0 || yMove > 0){
@@ -132,6 +132,7 @@ angular.module('ngcrop')
 
         var corner = 0;
 
+        //TODO make constants
         if(chosen == topLeft){
 
           corner = 1;
