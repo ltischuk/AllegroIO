@@ -40,6 +40,9 @@ angular
                     cvs[0].width = scope.width ? scope.width : newImage.width;
                     cvs[0].height = scope.width ? scope.width : newImage.height;
                     selector.setScalesToImage(newImage);
+                    var dim = Math.min(selector.scaledWidth,selector.scaledHeight);
+                    var topleft = (cvs[0].width / 2) - (dim/4);
+                    selector.setDimensions(topleft, dim/4, dim/2);
                     drawImageOnCanvas(newImage, false);
 
                   }
