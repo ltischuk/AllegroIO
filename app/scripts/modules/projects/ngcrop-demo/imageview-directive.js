@@ -14,6 +14,7 @@ angular.module('allegroIoApp')
       ,link: function (scope, elem, attrs) {
 
         scope.uploadFileInstructions = 'Click the button to upload an image.';
+        scope.cropBtnLabel = 'Crop Image';
         scope.cropViewActivated = false;
         scope.origImageFile = undefined;
         scope.image = undefined;
