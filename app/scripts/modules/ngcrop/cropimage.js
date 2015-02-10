@@ -49,6 +49,7 @@ angular
               );
 
 
+              //figure out how to crop - maybe private canvas
               function drawImageOnCanvas(crop){
 
                 ctx.clearRect(0, 0, element.width, element.height);
