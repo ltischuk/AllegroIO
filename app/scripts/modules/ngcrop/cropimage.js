@@ -12,14 +12,12 @@ angular
               origImage: '=',
               width: '=',
               height: '=',
-              croppedImage: '='
+              croppedImgData: '='
 
             },
             template: '<canvas></canvas>', //new idea is to use a canvas
             link: function (scope, element, attrs) {
 
-
-              scope.cropViewActivated = true;
               var cvs = element.find('canvas');
               cvs.width = scope.width ? scope.width : 300;
               cvs.height = scope.height ? scope.height : 300;
@@ -44,6 +42,7 @@ angular
                     var topleft = (cvs[0].width / 2) - (dim/4);
                     selector.setDimensions(topleft, dim/4, dim/2);
                     drawImageOnCanvas( false);
+                    scope.croppedImgData = cvs[0].toDataURL('image/jpeg');
 
                   }
                 }
@@ -118,22 +117,29 @@ angular
               function handleMouseUp(e){
                 isSelecting = false;
                 drawImageOnCanvas(false);
+                cvs[0].style.cursor = 'default';
+                scope.croppedImgData = cvs[0].toDataURL('image/jpeg');
+              }
+
+              function handleMouseOut(e){
+
+                isSelecting = false;
+                moveCorner = false;
+                cvs[0].style.cursor = 'default';
+                scope.croppedImgData = cvs[0].toDataURL('image/jpeg');
+
               }
 
               cvs.on('mousedown', function(e) {
-              //  if(scope.isReadyForCrop){
 
                   handleMouseDown(e);
-              //  }
+
               });
 
               cvs.on('mouseup', function(e) {
-              //  if(scope.isReadyForCrop) {
 
                   handleMouseUp(e);
-                  cvs[0].style.cursor = 'default';
 
-                //}
               });
 
               cvs.on('mousemove', function(e) {
@@ -146,9 +152,8 @@ angular
 
               cvs.on('mouseout', function(e){
 
-                isSelecting = false;
-                moveCorner = false;
-                cvs[0].style.cursor = 'default';
+                handleMouseOut(e);
+
 
               });
 
