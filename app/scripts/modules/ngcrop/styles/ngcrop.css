@@ -1,9 +1,0 @@
-#ngcrop-selector{
-
-  position: absolute;
-  float: left;
-  border-style: dashed;
-  display: none;
-  z-index: 100;
-
-}

@@ -1,17 +1,17 @@
 'use strict';
 
-describe('Controller: MainCtrl', function () {
+describe('Controller: AppController', function () {
 
   // load the controller's module
   beforeEach(module('allegroIoApp'));
 
-  var MainCtrl,
+  var AppController,
     scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    MainCtrl = $controller('MainCtrl', {
+    AppController = $controller('AppController', {
       $scope: scope
     });
   }));

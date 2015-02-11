@@ -5,7 +5,7 @@
     </div>
   </div>
   <div class="row">
-    <div class="project-content-container">
+    <div class="project-content-container test">
       <div id="file-upload-view" data-ng-show="!cropViewActivated">
         <div class="col-xs-12 center-in-row" data-ng-bind="uploadFileInstructions"></div>
         <div class="col-xs-12 col-sm-8 col-md-6 col-md-offset-3 col-sm-offset-2">
@@ -17,21 +17,23 @@
           <crop-image data-ng-show="isReadyForCrop" cropped-img-data="croppedImageDataUrl" orig-image="origImageFile"></crop-image>
           <img data-ng-src="{{croppedImageDataUrl}}" data-ng-show="!isReadyForCrop" height="200px" width="200px">
         </div>
-        <div class="col-sm-6 col-sm-offset-3" data-ng-show="isReadyForCrop">
-          <button
-            on-tap
-            class="btn btn-primary btn-block"
-            data-ng-click="crop()"
-            data-ng-bind="cropBtnLabel">
-          </button>
-        </div>
-        <div class="col-sm-6 col-sm-offset-3" data-ng-show="!isReadyForCrop">
-          <button
-            on-tap
-            class="btn btn-primary btn-block"
-            data-ng-click=""
-            data-ng-bind="revertBtnLabel">
-          </button>
+        <div class="bottom-button-row">
+          <div class="col-sm-6 col-sm-offset-3" data-ng-show="isReadyForCrop">
+            <button
+              on-tap
+              class="btn btn-primary btn-block"
+              data-ng-click="crop()"
+              data-ng-bind="cropBtnLabel">
+            </button>
+          </div>
+          <div class="col-sm-6 col-sm-offset-3" data-ng-show="!isReadyForCrop">
+            <button
+              on-tap
+              class="btn btn-primary btn-block"
+              data-ng-click=""
+              data-ng-bind="revertBtnLabel">
+            </button>
+          </div>
         </div>
       </div>
     </div>

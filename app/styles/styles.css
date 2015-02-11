@@ -155,6 +155,9 @@
   position: relative;
   text-align: center;
 }
+.ng-crop-demo #main-ngcrop-area-view .img-container .canvas {
+  display: block;
+}
 .ng-crop-demo #main-ngcrop-area-view #testsel {
   position: absolute;
   top: 0px;
@@ -164,4 +167,7 @@
   border-style: dashed;
   display: block;
   z-index: 100;
+}
+.ng-crop-demo #main-ngcrop-area-view .bottom-button-row {
+  margin-top: 20px;
 }
