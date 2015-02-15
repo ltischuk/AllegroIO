@@ -8,6 +8,8 @@
  * Controller of the allegroIoApp
  */
 angular.module('allegroIoApp')
-  .controller('AppController', function () {
+  .controller('AppController', function ($scope) {
+
+    $scope.awesomeThings = 'one';
 
   });

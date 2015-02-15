@@ -1,10 +1,5 @@
 'use strict';
 
-/**
- * app specific modules
- */
-
- angular.module('ngcrop', []);
  /*
  * Main module of the application.
  */

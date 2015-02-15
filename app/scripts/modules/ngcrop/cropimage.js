@@ -14,7 +14,7 @@ angular.module('ngcrop').directive('cropImage',
             croppedImgData: '='
 
           },
-          template: '<canvas></canvas>', //new idea is to use a canvas
+          template: '<canvas></canvas>',
           link: function (scope, element, attrs) {
 
             var cvs = element.find('canvas');

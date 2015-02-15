@@ -11,7 +11,7 @@ module.exports = function(config) {
     autoWatch: true,
 
     // base path, that will be used to resolve files and exclude
-    basePath: '../',
+    basePath: '',
 
     // testing framework to use (jasmine/mocha/qunit/...)
     frameworks: ['jasmine'],
@@ -20,16 +20,24 @@ module.exports = function(config) {
     files: [
       'bower_components/angular/angular.js',
       'bower_components/angular-mocks/angular-mocks.js',
-      'app/scripts/**/*.js',
-      'test/mock/**/*.js',
-      'test/spec/**/*.js'
+      'bower_components/angular-bootstrap/ui-bootstrap.min.js',
+      'bower_components/angular-ui-router/release/angular-ui-router.js',
+      'app/scripts/modules/ngcrop/ngcrop.js',
+      'app/scripts/modules/ngcrop/*.js',
+     // 'app/scripts/modules/**/*.js',
+     // 'app/scripts/*.js',
+      //'app/scripts/**/*.js',
+      'app/scripts/modules/ngcrop/test/**/*Spec.js',
+      //'app/scripts/**/*.js',
+      //'test/mock/**/*.js',
+      //'test/spec/**/*.js',
     ],
 
     // list of files / patterns to exclude
     exclude: [],
 
     // web server port
-    port: 8080,
+    port: 9876,
 
     // Start these browsers, currently available:
     // - Chrome
@@ -57,7 +65,7 @@ module.exports = function(config) {
 
     // level of logging
     // possible values: LOG_DISABLE || LOG_ERROR || LOG_WARN || LOG_INFO || LOG_DEBUG
-    logLevel: config.LOG_INFO,
+    logLevel: config.LOG_INFO
 
     // Uncomment the following lines if you are using grunt's server to run the tests
     // proxies: {

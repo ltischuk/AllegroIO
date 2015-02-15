@@ -28,7 +28,7 @@ angular.module('ngcrop')
         this.scaledHeight = img.height * this.ratio;
         this.maxWidth = this.scaledWidth - this.paddedPixels;
         this.maxHeight = this.scaledHeight - this.paddedPixels;
-        
+
       },
 
       setDimensions : function(x,y,length) {
