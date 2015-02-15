@@ -9,7 +9,6 @@ angular.module('ngcrop')
       this.x = 0;
       this.y = 0;
       this.length = 0;
-      this.lineWidth = 2;
       this.paddedPixels = 2;
       this.ratio = 1;
       this.scaledWidth = 1;
@@ -21,21 +20,17 @@ angular.module('ngcrop')
 
     CropSelection.prototype = {
 
-      setScalesToImage : function(img){
+      setScalesToImage : function(img, newWidth){
 
         this.ratio = (this.maxWidth > 0 && this.maxHeight > 0) ? Math.min ((this.maxWidth / img.width),(this.maxHeight/ img.height)): 1;
         this.scaledWidth = img.width * this.ratio;
         this.scaledHeight = img.height * this.ratio;
         this.maxWidth = this.scaledWidth - this.paddedPixels;
         this.maxHeight = this.scaledHeight - this.paddedPixels;
-
-      },
-
-      setDimensions : function(x,y,length) {
-
-        this.x = x;
-        this.y = y;
-        this.length = length;
+        var dim = Math.min(this.scaledWidth,this.scaledHeight);
+        this.x = (newWidth / 2) - (dim/4);
+        this.y = dim/4;
+        this.length = dim/2;
 
       },
       toJSON : function(){

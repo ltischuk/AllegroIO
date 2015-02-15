@@ -17,7 +17,7 @@ describe('Factory: CropSelection', function() {
 
   }));
 
-  it("should instantiate a crop selection", function() {
+  it("should instantiate a crop selection and set max dims to 0", function() {
     //Setup initialized data prior to cases
 
     var cropSelector = new CropSelection();

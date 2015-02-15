@@ -11,7 +11,9 @@ angular.module('ngcrop').directive('cropImage',
             origImage: '=',
             width: '=',
             height: '=',
-            croppedImgData: '='
+            croppedImgData: '=',
+            selectorColor: '@',
+            selectorLineWidth: '@'
 
           },
           template: '<canvas></canvas>',
@@ -20,6 +22,8 @@ angular.module('ngcrop').directive('cropImage',
             var cvs = element.find('canvas');
             cvs.width = angular.isDefined(scope.width) ? scope.width : 300;
             cvs.height = angular.isDefined(scope.height) ? scope.height : 300;
+            scope.selectorColor = angular.isDefined(scope.selectorColor) ? scope.selectorColor : '#ff0000';
+            scope.selectorLineWidth = angular.isDefined(scope.selectorLineWidth) && angular.isNumber(Number(scope.selectorLineWidth)) ? Number(scope.selectorLineWidth) : 2;
             var ctx = cvs[0].getContext('2d');
             var selector = new CropSelection();
             var cropCanvas = new CropCanvas();
@@ -37,12 +41,9 @@ angular.module('ngcrop').directive('cropImage',
 
                   cvs[0].width = scope.width ? scope.width : newImage.width;
                   cvs[0].height = scope.height ? scope.height : newImage.height;
-                  selector.setScalesToImage(newImage);
-                  var dim = Math.min(selector.scaledWidth,selector.scaledHeight);
-                  var topleft = (cvs[0].width / 2) - (dim/4);
-                  selector.setDimensions(topleft, dim/4, dim/2);
+                  selector.setScalesToImage(newImage, cvs[0].width);
                   drawImageOnCanvas( false);
-                  getCroppedImageData();
+                  calibrateCroppedImageData();
 
                 }
               }
@@ -64,12 +65,12 @@ angular.module('ngcrop').directive('cropImage',
               //draw the image to the canvas
               ctx.drawImage(scope.origImage,sX,sY,sWidth,sHeight,0,0,drawWidth,drawHeight);
               ctx.lineWidth = selector.lineWidth;
-              ctx.strokeStyle = '#ff0000';
+              ctx.strokeStyle = scope.selectorColor;
               ctx.strokeRect(selector.x,selector.y,selector.length,selector.length);
 
             }
 
-            function getCroppedImageData(){
+            function calibrateCroppedImageData(){
 
               scope.croppedImgData = cropCanvas.getDataUrl(scope.origImage,
                 (selector.x/selector.ratio), (selector.y/selector.ratio), (selector.length/selector.ratio) ,
@@ -123,7 +124,7 @@ angular.module('ngcrop').directive('cropImage',
               isSelecting = false;
               drawImageOnCanvas(false);
               cvs[0].style.cursor = 'default';
-              getCroppedImageData();
+              calibrateCroppedImageData();
             }
 
             function handleMouseOut(e){
@@ -131,7 +132,7 @@ angular.module('ngcrop').directive('cropImage',
               isSelecting = false;
               moveCorner = false;
               cvs[0].style.cursor = 'default';
-              getCroppedImageData();
+              calibrateCroppedImageData();
 
             }
 
