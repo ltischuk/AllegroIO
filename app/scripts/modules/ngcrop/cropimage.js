@@ -36,13 +36,13 @@ angular.module('ngcrop').directive('cropImage',
                 if(angular.isDefined(newImage)){
 
                   cvs[0].width = scope.width ? scope.width : newImage.width;
-                  cvs[0].height = scope.width ? scope.width : newImage.height;
+                  cvs[0].height = scope.height ? scope.height : newImage.height;
                   selector.setScalesToImage(newImage);
                   var dim = Math.min(selector.scaledWidth,selector.scaledHeight);
                   var topleft = (cvs[0].width / 2) - (dim/4);
                   selector.setDimensions(topleft, dim/4, dim/2);
                   drawImageOnCanvas( false);
-                  getCroppedImageData();//
+                  getCroppedImageData();
 
                 }
               }
@@ -50,27 +50,23 @@ angular.module('ngcrop').directive('cropImage',
 
 
             //figure out how to crop - maybe private canvas
-            function drawImageOnCanvas(crop){
+            function drawImageOnCanvas(){
 
               ctx.clearRect(0, 0, element.width, element.height);
 
-              var sX = crop ? (selector.x/selector.ratio) : 0;
-              var sY = crop ? (selector.y/selector.ratio) : 0;
-              var sWidth = crop ? (selector.length/selector.ratio) : scope.origImage.width;
-              var sHeight = crop ? (selector.length/selector.ratio) : scope.origImage.height;
+              var sX =  0;
+              var sY =  0;
+              var sWidth =  scope.origImage.width;
+              var sHeight =  scope.origImage.height;
               var drawWidth = selector.scaledWidth;
               var drawHeight = selector.scaledHeight;
 
-              //draw the image to the canvas this one is just for display
+              //draw the image to the canvas
               ctx.drawImage(scope.origImage,sX,sY,sWidth,sHeight,0,0,drawWidth,drawHeight);
+              ctx.lineWidth = selector.lineWidth;
+              ctx.strokeStyle = '#ff0000';
+              ctx.strokeRect(selector.x,selector.y,selector.length,selector.length);
 
-              if(!crop){
-
-                ctx.lineWidth = selector.lineWidth;
-                ctx.strokeStyle = '#ff0000';
-                ctx.strokeRect(selector.x,selector.y,selector.length,selector.length);
-
-              }
             }
 
             function getCroppedImageData(){
@@ -152,17 +148,14 @@ angular.module('ngcrop').directive('cropImage',
             });
 
             cvs.on('mousemove', function(e) {
-            //  if(scope.isReadyForCrop){
 
                 handleMouseMove(e);
 
-            //  }
             });
 
             cvs.on('mouseout', function(e){
 
               handleMouseOut(e);
-
 
             });
 

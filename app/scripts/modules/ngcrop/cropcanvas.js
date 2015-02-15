@@ -11,7 +11,6 @@ angular.module('ngcrop')
 
     }
 
-    //figure out how to crop - maybe private canvas
     CropCanvas.prototype = {
 
       getDataUrl: function (img, x, y, sWidth, sHeight, drawWidth, drawHeight) {

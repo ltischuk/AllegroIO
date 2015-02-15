@@ -10,23 +10,25 @@ angular.module('ngcrop')
       this.y = 0;
       this.length = 0;
       this.lineWidth = 2;
-      this.paddedPixels = 10;
+      this.paddedPixels = 2;
       this.ratio = 1;
       this.scaledWidth = 1;
       this.scaledHeight = 1;
-      this.maxWidth = maxWidth;
-      this.maxHeight = maxHeight;
+      this.maxWidth = angular.isDefined(maxWidth) ? maxWidth : 0;
+      this.maxHeight = angular.isDefined(maxHeight) ? maxHeight : 0;
 
     }
 
     CropSelection.prototype = {
 
       setScalesToImage : function(img){
-        this.ratio = this.maxWidth && this.maxHeight ? Math.min ((this.maxWidth / img.width),(this.maxHeight/ img.height)): 1;
+
+        this.ratio = (this.maxWidth > 0 && this.maxHeight > 0) ? Math.min ((this.maxWidth / img.width),(this.maxHeight/ img.height)): 1;
         this.scaledWidth = img.width * this.ratio;
         this.scaledHeight = img.height * this.ratio;
         this.maxWidth = this.scaledWidth - this.paddedPixels;
         this.maxHeight = this.scaledHeight - this.paddedPixels;
+        
       },
 
       setDimensions : function(x,y,length) {
@@ -60,7 +62,9 @@ angular.module('ngcrop')
       allowedLengthMove: function(acc){
         if(this.x + (this.length + acc) < (this.maxWidth) &&
           this.y + (this.length + acc) < (this.maxHeight)){
+
           return true;
+
         }
         return false;
       },
@@ -89,19 +93,29 @@ angular.module('ngcrop')
           }else if(cornerPosition == 2){
 
             this.y = this.allowedYMove(yMove) ? this.y + yMove :  this.y;
+
             if(xMove > 0 || yMove < 0){
+
               this.length = this.allowedLengthMove((Math.abs(xMove) + Math.abs(yMove))) ? this.length + (Math.abs(xMove) + Math.abs(yMove)) : this.length;
+
             }else{
+
               this.length = this.allowedLengthMove(-(Math.abs(xMove) + Math.abs(yMove)))? this.length - (Math.abs(xMove) + Math.abs(yMove)) : this.length;
+
             }
 
           }else if(cornerPosition == 3){
 
             this.x = this.allowedXMove(xMove) ? (this.x + xMove) : this.x;
+
             if(xMove < 0 || yMove > 0){
+
               this.length = this.allowedLengthMove((Math.abs(xMove) + Math.abs(yMove))) ? this.length + (Math.abs(xMove) + Math.abs(yMove)) : this.length;
+
             }else{
+
               this.length = this.allowedLengthMove(-(Math.abs(xMove) + Math.abs(yMove))) ? this.length - (Math.abs(xMove) + Math.abs(yMove)) : this.length;
+
             }
 
           }else{
@@ -110,8 +124,6 @@ angular.module('ngcrop')
           }
 
         }else{
-          //console.log('move x :' + (this.x + xMove) + ' and len = ' + (this.x + xMove + this.length));
-          //console.log('move y :' + (this.y + yMove)  + ' and len = ' + (this.y + yMove + this.length));
           this.x = this.allowedXMove(xMove) ? this.x + xMove : this.x;
           this.y = this.allowedYMove(yMove) ? this.y + yMove : this.y;
         }
@@ -132,7 +144,6 @@ angular.module('ngcrop')
 
         var corner = 0;
 
-        //TODO make constants
         if(chosen == topLeft){
 
           corner = 1;
