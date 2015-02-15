@@ -44,5 +44,11 @@ angular.module('allegroIoApp')
 
       }
 
+      $scope.revertCrop = function(){
+
+        $scope.isReadyForCrop = true;
+
+      }
+
 
     });

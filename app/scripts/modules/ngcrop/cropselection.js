@@ -33,16 +33,6 @@ angular.module('ngcrop')
         this.length = dim/2;
 
       },
-      toJSON : function(){
-        return{
-          x: this.x,
-          y : this.y,
-          length: this.length,
-          ratio : this.ratio,
-          scaledWidth : this.scaledWidth,
-          scaledHeight : this.scaledHeight
-        }
-      },
       isInMoveZone : function(pointX, pointY){
 
         var partial = this.length /6;
