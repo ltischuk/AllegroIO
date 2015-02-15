@@ -1,7 +1,3 @@
-/**
- * Created by ltischuk on 10/11/14.
- */
-'use strict';
 
 /**
  * @ngdoc function
@@ -9,6 +5,7 @@
  * @description
  * Service of the allegroIoApp
  */
+'use strict';
 angular.module('allegroIoApp')
     .service('ProjectListService', function ProjectList(Project) {
 
