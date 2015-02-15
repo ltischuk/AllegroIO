@@ -17,6 +17,10 @@ angular
                 templateUrl: '/partials/app.html',
                 controller: 'AppController'
             })
+            .state('about', {
+              url: '/about',
+              templateUrl: '/partials/about.html'
+            })
             .state('projects', {
                 abstract: true,
                 url: '/projects',

@@ -171,3 +171,6 @@
 .ng-crop-demo #main-ngcrop-area-view .bottom-button-row {
   margin-top: 20px;
 }
+.project-list a {
+  cursor: pointer;
+}

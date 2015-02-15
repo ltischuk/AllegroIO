@@ -16,7 +16,7 @@ angular.module('allegroIoApp')
         service.mainAppName = 'AllegroIO';
         service.menuItems = [{name: 'Home', stateName:'home' },
                              {name: 'Projects', stateName: 'projects.selection'},
-                             {name: 'Contact', stateName:'home'}];
+                             {name: 'About Me', stateName:'about'}];
 
         return service;
     }

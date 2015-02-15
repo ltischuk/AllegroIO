@@ -142,15 +142,33 @@ angular.module('ngcrop').directive('cropImage',
 
             });
 
+            cvs.on('touchstart', function(e){
+
+              handleMouseDown(e);
+
+            });
+
             cvs.on('mouseup', function(e) {
 
                 handleMouseUp(e);
 
             });
 
+            cvs.on('touchend', function(e){
+
+              handleMouseUp(e);
+
+            });
+
             cvs.on('mousemove', function(e) {
 
                 handleMouseMove(e);
+
+            });
+
+            cvs.on('touchmove', function(e){
+
+              handleMouseMove(e);
 
             });
 
