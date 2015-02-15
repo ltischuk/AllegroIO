@@ -144,7 +144,7 @@ angular.module('ngcrop').directive('cropImage',
 
             cvs.on('touchstart', function(e){
 
-              handleMouseDown(e);
+              //maybe see about this in near future
 
             });
 
@@ -156,7 +156,7 @@ angular.module('ngcrop').directive('cropImage',
 
             cvs.on('touchend', function(e){
 
-              handleMouseUp(e);
+              //maybe see about this in near future
 
             });
 
@@ -168,7 +168,7 @@ angular.module('ngcrop').directive('cropImage',
 
             cvs.on('touchmove', function(e){
 
-              handleMouseMove(e);
+              //maybe see about this in near future
 
             });
 
