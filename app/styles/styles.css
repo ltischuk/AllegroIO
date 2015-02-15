@@ -155,8 +155,8 @@
   position: relative;
   text-align: center;
 }
-.ng-crop-demo #main-ngcrop-area-view .img-container .canvas {
-  display: block;
+.ng-crop-demo #main-ngcrop-area-view .img-container canvas {
+  border: solid 1px black;
 }
 .ng-crop-demo #main-ngcrop-area-view #testsel {
   position: absolute;
