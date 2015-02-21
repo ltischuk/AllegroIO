@@ -19,11 +19,12 @@ angular.module('ngcrop').directive('cropImage',
           template: '<canvas></canvas>',
           link: function (scope, element, attrs) {
 
+            scope.selectorColor = angular.isDefined(scope.selectorColor) ? scope.selectorColor : '#ff0000';
+            scope.selectorLineWidth = angular.isDefined(scope.selectorLineWidth) && angular.isNumber(Number(scope.selectorLineWidth)) ? Number(scope.selectorLineWidth) : 2;
+
             var cvs = element.find('canvas');
             cvs.width = angular.isDefined(scope.width) ? scope.width : 300;
             cvs.height = angular.isDefined(scope.height) ? scope.height : 300;
-            scope.selectorColor = angular.isDefined(scope.selectorColor) ? scope.selectorColor : '#ff0000';
-            scope.selectorLineWidth = angular.isDefined(scope.selectorLineWidth) && angular.isNumber(Number(scope.selectorLineWidth)) ? Number(scope.selectorLineWidth) : 2;
             var ctx = cvs[0].getContext('2d');
             var selector = new CropSelection();
             var cropCanvas = new CropCanvas();
@@ -42,7 +43,7 @@ angular.module('ngcrop').directive('cropImage',
                   cvs[0].width = scope.width ? scope.width : newImage.width;
                   cvs[0].height = scope.height ? scope.height : newImage.height;
                   selector.setScalesToImage(newImage, cvs[0].width);
-                  drawImageOnCanvas( false);
+                  drawImageOnCanvas();
                   calibrateCroppedImageData();
 
                 }

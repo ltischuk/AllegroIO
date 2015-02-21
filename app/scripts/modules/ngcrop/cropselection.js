@@ -2,7 +2,7 @@
  * Created by ltischuk on 2/7/15.
  */
 angular.module('ngcrop')
-  .factory('CropSelection', function CropSelectionFactory() {
+  .factory('CropSelection', function CropSelectionFactory(ngCropConstants) {
 
     function CropSelection(maxWidth, maxHeight){
 
@@ -68,14 +68,14 @@ angular.module('ngcrop')
       move : function(xMove,yMove,corner, cornerPosition){
 
         if(corner){
-          if(cornerPosition == 1){
+          if(cornerPosition == ngCropConstants.POSITIONS.TOP_LEFT){
 
             this.x = this.allowedXMove(xMove) ? this.x + xMove : this.x;
             this.y = this.allowedYMove(yMove) ? this.y + yMove : this.y;
             this.length = this.allowedLengthMove(-(xMove + yMove)) ? this.length - (xMove + yMove) : this.length;
 
 
-          }else if(cornerPosition == 2){
+          }else if(cornerPosition == ngCropConstants.POSITIONS.TOP_RIGHT){
 
             this.y = this.allowedYMove(yMove) ? this.y + yMove :  this.y;
 
@@ -89,7 +89,7 @@ angular.module('ngcrop')
 
             }
 
-          }else if(cornerPosition == 3){
+          }else if(cornerPosition == ngCropConstants.POSITIONS.BOTTOM_LEFT){
 
             this.x = this.allowedXMove(xMove) ? (this.x + xMove) : this.x;
 
