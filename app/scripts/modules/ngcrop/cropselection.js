@@ -106,6 +106,8 @@ angular.module('ngcrop')
 
           }else{
 
+            this.x = this.allowedXMove(-xMove) ? this.x - xMove : this.x;
+            this.y = this.allowedYMove(-yMove) ? this.y - yMove :  this.y;
             this.length = (this.allowedLengthMove((xMove + yMove)) ? (this.length + (xMove + yMove)) : this.length);
           }
 
