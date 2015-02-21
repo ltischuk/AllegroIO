@@ -77,6 +77,7 @@ angular.module('ngcrop')
 
           }else if(cornerPosition == ngCropConstants.POSITIONS.TOP_RIGHT){
 
+            this.x = this.allowedXMove(-xMove) ? this.x - xMove : this.x;
             this.y = this.allowedYMove(yMove) ? this.y + yMove :  this.y;
 
             if(xMove > 0 || yMove < 0){
