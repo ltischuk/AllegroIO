@@ -45,22 +45,24 @@ angular.module('ngcrop')
         return false;
       },
       allowedLengthMove: function(acc){
-        if(this.x + (this.length + acc) < (this.maxWidth) &&
-          this.y + (this.length + acc) < (this.maxHeight)){
+        if(this.x + (this.length + acc) > (this.maxWidth) || this.y + (this.length + acc) > (this.maxHeight) ||
+          (this.length - Math.abs(acc)) < 0){
 
-          return true;
+          return false;
 
         }
-        return false;
+        return true;
       },
       allowedXMove : function(acc){
-        if((acc + this.x) < this.paddedPixels || (this.x + acc + this.length) > this.maxWidth){
+        if((acc + this.x) < this.paddedPixels || (this.x + acc + this.length) > this.maxWidth ||
+          (this.length - Math.abs(acc)) <= 0){
           return false;
         }
         return true;
       },
       allowedYMove : function(acc){
-        if((acc + this.y) < this.paddedPixels || (this.y + acc + this.length) > this.maxHeight){
+        if((acc + this.y) < this.paddedPixels || (this.y + acc + this.length) > this.maxHeight ||
+          (this.length - Math.abs(acc)) <= 0){
           return false;
         }
         return true;
