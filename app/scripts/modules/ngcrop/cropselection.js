@@ -46,16 +46,14 @@ angular.module('ngcrop')
       },
       allowedLengthMove: function(acc){
         if(this.x + (this.length + acc) > (this.maxWidth) || this.y + (this.length + acc) > (this.maxHeight) ||
-          (this.length - Math.abs(acc)) < 0){
-
+          this.length + acc < 0 ){
           return false;
 
         }
         return true;
       },
       allowedXMove : function(acc){
-        if((acc + this.x) < this.paddedPixels || (this.x + acc + this.length) > this.maxWidth ||
-          (this.length - Math.abs(acc)) <= 0){
+        if((acc + this.x) < this.paddedPixels || (this.x + acc + this.length) > this.maxWidth){
           return false;
         }
         return true;
@@ -86,14 +84,15 @@ angular.module('ngcrop')
 
             this.x = this.allowedXMove(-xMove) ? this.x - xMove : this.x;
             this.y = this.allowedYMove(yMove) ? this.y + yMove :  this.y;
+            var len = Math.abs(xMove) + Math.abs(yMove);
 
             if(xMove > 0 || yMove < 0){
 
-              this.length = this.allowedLengthMove((Math.abs(xMove) + Math.abs(yMove))) ? this.length + (Math.abs(xMove) + Math.abs(yMove)) : this.length;
+              this.length = this.allowedLengthMove(len) ? this.length + len : this.length;
 
             }else{
 
-              this.length = this.allowedLengthMove(-(Math.abs(xMove) + Math.abs(yMove)))? this.length - (Math.abs(xMove) + Math.abs(yMove)) : this.length;
+              this.length = this.allowedLengthMove(-(len))? this.length -len : this.length;
 
             }
 
@@ -101,14 +100,15 @@ angular.module('ngcrop')
 
             this.x = this.allowedXMove(xMove) ? (this.x + xMove) : this.x;
             this.y = this.allowedYMove(-yMove) ? this.y - yMove :  this.y;
+            var len = Math.abs(xMove) + Math.abs(yMove);
 
             if(xMove < 0 || yMove > 0){
 
-              this.length = this.allowedLengthMove((Math.abs(xMove) + Math.abs(yMove))) ? this.length + (Math.abs(xMove) + Math.abs(yMove)) : this.length;
+              this.length = this.allowedLengthMove(len) ? this.length + len : this.length;
 
             }else{
 
-              this.length = this.allowedLengthMove(-(Math.abs(xMove) + Math.abs(yMove))) ? this.length - (Math.abs(xMove) + Math.abs(yMove)) : this.length;
+              this.length = this.allowedLengthMove(-(len)) ? this.length - len : this.length;
 
             }
 
