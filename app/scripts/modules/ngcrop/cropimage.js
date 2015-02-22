@@ -123,18 +123,10 @@ angular.module('ngcrop').directive('cropImage',
 
             function handleMouseUp(e){
               isSelecting = false;
-              drawImageOnCanvas(false);
-              cvs[0].style.cursor = 'default';
-              calibrateCroppedImageData();
-            }
-
-            function handleMouseOut(e){
-
-              isSelecting = false;
               moveCorner = false;
+              drawImageOnCanvas();
               cvs[0].style.cursor = 'default';
               calibrateCroppedImageData();
-
             }
 
             cvs.on('mousedown', function(e) {
@@ -175,7 +167,7 @@ angular.module('ngcrop').directive('cropImage',
 
             cvs.on('mouseout', function(e){
 
-              handleMouseOut(e);
+              handleMouseUp(e);
 
             });
 
