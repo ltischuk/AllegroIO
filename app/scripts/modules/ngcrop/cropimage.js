@@ -1,5 +1,6 @@
 /**
  * Created by ltischuk on 11/8/14.
+ * Directive: cropImage
  */
 angular.module('ngcrop').directive('cropImage',
   function(CropSelection,
@@ -23,8 +24,8 @@ angular.module('ngcrop').directive('cropImage',
             scope.selectorLineWidth = angular.isDefined(scope.selectorLineWidth) && angular.isNumber(Number(scope.selectorLineWidth)) ? Number(scope.selectorLineWidth) : 2;
 
             var cvs = element.find('canvas');
-            cvs.width = angular.isDefined(scope.width) ? scope.width : 300;
-            cvs.height = angular.isDefined(scope.height) ? scope.height : 300;
+            var canvasWidth = angular.isDefined(scope.width) && angular.isNumber(Number(scope.width))? Number(scope.width) : 300;
+            var canvasHeight = angular.isDefined(scope.height) && angular.isNumber(Number(scope.height)) ? Number(scope.height) : 300;
             var ctx = cvs[0].getContext('2d');
             var selector = new CropSelection();
             var cropCanvas = new CropCanvas();
@@ -50,8 +51,10 @@ angular.module('ngcrop').directive('cropImage',
               }
             );
 
-
-            //figure out how to crop - maybe private canvas
+            /**
+             * Method: drawImageOnCanvas
+             * draws the image and the selector square on top of the image dynamically
+             */
             function drawImageOnCanvas(){
 
               ctx.clearRect(0, 0, element.width, element.height);
@@ -71,6 +74,10 @@ angular.module('ngcrop').directive('cropImage',
 
             }
 
+            /**
+             * Obtains the cropped image data URL by drawing the cropped image on
+             * a private cropCanvas instance and calling toDataURL
+             */
             function calibrateCroppedImageData(){
 
               scope.croppedImgData = cropCanvas.getDataUrl(scope.origImage,
@@ -79,6 +86,10 @@ angular.module('ngcrop').directive('cropImage',
 
             }
 
+            /**
+             * Handles the event for mouse down on the main canvas
+             * @param e
+             */
             function handleMouseDown(e){
 
               mouseX = e.offsetX;
@@ -89,6 +100,10 @@ angular.module('ngcrop').directive('cropImage',
 
             }
 
+            /**
+             * Handles the even for mouse move on the main canvas
+             * @param e
+             */
             function handleMouseMove(e){
 
               var corner = 0;
@@ -121,6 +136,10 @@ angular.module('ngcrop').directive('cropImage',
 
             }
 
+            /**
+             * Handles mouseUp (or mouseOut) event on the main canvas
+             * @param e
+             */
             function handleMouseUp(e){
               isSelecting = false;
               moveCorner = false;
