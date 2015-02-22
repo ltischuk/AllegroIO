@@ -177,3 +177,7 @@
 .top-30-margin {
   margin-top: 30px;
 }
+.btn-deep-red {
+  background-color: #CD0000;
+  color: #FFFFFF;
+}
