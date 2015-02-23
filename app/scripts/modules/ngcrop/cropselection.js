@@ -67,6 +67,7 @@ angular.module('ngcrop')
       },
       move : function(xMove,yMove,corner, cornerPosition){
 
+        //TODO on mousedown pass in corner so we can make it sticky - set it to a variable here  and then on each move, check that the cornerPosition =the sticky corner
         if(corner){
 
           var move = 0;
@@ -84,7 +85,7 @@ angular.module('ngcrop')
 
             this.x = this.allowedXMove(-xMove) ? this.x - xMove : this.x;
             this.y = this.allowedYMove(yMove) ? this.y + yMove :  this.y;
-            var len = Math.abs(xMove) + Math.abs(yMove);
+            len = Math.abs(xMove) + Math.abs(yMove);
 
             if(xMove > 0 || yMove < 0){
 
@@ -100,7 +101,7 @@ angular.module('ngcrop')
 
             this.x = this.allowedXMove(xMove) ? (this.x + xMove) : this.x;
             this.y = this.allowedYMove(-yMove) ? this.y - yMove :  this.y;
-            var len = Math.abs(xMove) + Math.abs(yMove);
+            len = Math.abs(xMove) + Math.abs(yMove);
 
             if(xMove < 0 || yMove > 0){
 
