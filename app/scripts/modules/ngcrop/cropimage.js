@@ -97,7 +97,7 @@ angular.module('ngcrop').directive('cropImage',
               lastMouseX = mouseX;
               lastMouseY = mouseY;
               isSelecting = true;
-              selector.setCorner(mouseX, mouseY);
+              selector.setCurrentCorner(mouseX, mouseY);
 
             }
 
