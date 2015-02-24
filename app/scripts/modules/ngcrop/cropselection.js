@@ -15,6 +15,7 @@ angular.module('ngcrop')
       this.scaledHeight = 1;
       this.maxWidth = angular.isDefined(maxWidth) ? maxWidth : 0;
       this.maxHeight = angular.isDefined(maxHeight) ? maxHeight : 0;
+      this.currentCorner = 0;
 
     }
 
@@ -65,61 +66,65 @@ angular.module('ngcrop')
         }
         return true;
       },
-      move : function(xMove,yMove,corner, cornerPosition){
+      move : function(xMove,yMove, isCorner, cornerPosition){
 
         //TODO on mousedown pass in corner so we can make it sticky - set it to a variable here  and then on each move, check that the cornerPosition =the sticky corner
-        if(corner){
+        if(isCorner){
 
           var move = 0;
           var len = 0;
 
-          if(cornerPosition == ngCropConstants.POSITIONS.TOP_LEFT){
+          if(this.currentCorner == cornerPosition){
 
-            move = Math.max(xMove, yMove) > 0 ? Math.max(xMove, yMove) : Math.min(xMove,yMove);
-            len = -(move * 2);
-            this.x = this.allowedXMove(move) ? this.x + move : this.x;
-            this.y = this.allowedYMove(move) ? this.y + move :  this.y;
-            this.length = (this.allowedLengthMove(len) ? (this.length + len) : this.length);
+            if(cornerPosition == ngCropConstants.POSITIONS.TOP_LEFT){
 
-          }else if(cornerPosition == ngCropConstants.POSITIONS.TOP_RIGHT){
+              move = Math.max(xMove, yMove) > 0 ? Math.max(xMove, yMove) : Math.min(xMove,yMove);
+              len = -(move * 2);
+              this.x = this.allowedXMove(move) ? this.x + move : this.x;
+              this.y = this.allowedYMove(move) ? this.y + move :  this.y;
+              this.length = (this.allowedLengthMove(len) ? (this.length + len) : this.length);
 
-            this.x = this.allowedXMove(-xMove) ? this.x - xMove : this.x;
-            this.y = this.allowedYMove(yMove) ? this.y + yMove :  this.y;
-            len = Math.abs(xMove) + Math.abs(yMove);
+            }else if(cornerPosition == ngCropConstants.POSITIONS.TOP_RIGHT){
 
-            if(xMove > 0 || yMove < 0){
+              this.x = this.allowedXMove(-xMove) ? this.x - xMove : this.x;
+              this.y = this.allowedYMove(yMove) ? this.y + yMove :  this.y;
+              len = Math.abs(xMove) + Math.abs(yMove);
 
-              this.length = this.allowedLengthMove(len) ? this.length + len : this.length;
+              if(xMove > 0 || yMove < 0){
+
+                this.length = this.allowedLengthMove(len) ? this.length + len : this.length;
+
+              }else{
+
+                this.length = this.allowedLengthMove(-(len))? this.length -len : this.length;
+
+              }
+
+            }else if(cornerPosition == ngCropConstants.POSITIONS.BOTTOM_LEFT){
+
+              this.x = this.allowedXMove(xMove) ? (this.x + xMove) : this.x;
+              this.y = this.allowedYMove(-yMove) ? this.y - yMove :  this.y;
+              len = Math.abs(xMove) + Math.abs(yMove);
+
+              if(xMove < 0 || yMove > 0){
+
+                this.length = this.allowedLengthMove(len) ? this.length + len : this.length;
+
+              }else{
+
+                this.length = this.allowedLengthMove(-(len)) ? this.length - len : this.length;
+
+              }
 
             }else{
 
-              this.length = this.allowedLengthMove(-(len))? this.length -len : this.length;
-
+              move = Math.max(xMove, yMove) > 0 ? Math.max(xMove, yMove) : Math.min(xMove,yMove);
+              len = move * 2;
+              this.x = this.allowedXMove(-move) ? this.x - move : this.x;
+              this.y = this.allowedYMove(-move) ? this.y - move :  this.y;
+              this.length = (this.allowedLengthMove(len) ? (this.length + len) : this.length);
             }
 
-          }else if(cornerPosition == ngCropConstants.POSITIONS.BOTTOM_LEFT){
-
-            this.x = this.allowedXMove(xMove) ? (this.x + xMove) : this.x;
-            this.y = this.allowedYMove(-yMove) ? this.y - yMove :  this.y;
-            len = Math.abs(xMove) + Math.abs(yMove);
-
-            if(xMove < 0 || yMove > 0){
-
-              this.length = this.allowedLengthMove(len) ? this.length + len : this.length;
-
-            }else{
-
-              this.length = this.allowedLengthMove(-(len)) ? this.length - len : this.length;
-
-            }
-
-          }else{
-
-            move = Math.max(xMove, yMove) > 0 ? Math.max(xMove, yMove) : Math.min(xMove,yMove);
-            len = move * 2;
-            this.x = this.allowedXMove(-move) ? this.x - move : this.x;
-            this.y = this.allowedYMove(-move) ? this.y - move :  this.y;
-            this.length = (this.allowedLengthMove(len) ? (this.length + len) : this.length);
           }
 
         }else{
@@ -162,7 +167,14 @@ angular.module('ngcrop')
         }
         return corner;
 
+      },
+      setCorner: function(mouseX, mouseY){
+
+        this.currentCorner = this.nearestCorner(mouseX, mouseY);
+        console.log('setting current corner to ' + this.currentCorner);
+
       }
+
 
 
     }
