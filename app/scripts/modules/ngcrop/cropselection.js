@@ -112,19 +112,26 @@ angular.module('ngcrop')
               case ngCropConstants.POSITIONS.BOTTOM_LEFT:
               {
 
-                this.x = this.allowedXMove(xMove) ? (this.x + xMove) : this.x;
-                this.y = this.allowedYMove(-yMove) ? this.y - yMove : this.y;
-                len = Math.abs(xMove) + Math.abs(yMove);
+                var moveLeft = (xMove < 0 || yMove > 0);
+                move = Math.min(Math.abs(xMove),Math.abs(yMove));
+                this.x = moveLeft && this.allowedXMove(-move) ? this.x - move : this.allowedXMove(move) ?  this.x + move : this.x ;
+                this.y = moveLeft && this.allowedYMove(-move) ? this.y - move : this.allowedYMove(move) ? this.y + move : this.y;
+                len = moveLeft ? (move * 2) : -(move *2);
+                this.length = this.allowedLengthMove(len) ? this.length + len : this.length;
 
-                if (xMove < 0 || yMove > 0) {
+               // this.x = this.allowedXMove(xMove) ? (this.x + xMove) : this.x;
+               // this.y = this.allowedYMove(-yMove) ? this.y - yMove : this.y;
+               // len = Math.abs(xMove) + Math.abs(yMove);
 
-                  this.length = this.allowedLengthMove(len) ? this.length + len : this.length;
+               // if (xMove < 0 || yMove > 0) {
 
-                } else {
+                 // this.length = this.allowedLengthMove(len) ? this.length + len : this.length;
 
-                  this.length = this.allowedLengthMove(-(len)) ? this.length - len : this.length;
+               // } else {
 
-                }
+//                  this.length = this.allowedLengthMove(-(len)) ? this.length - len : this.length;
+
+  //              }
                 break;
               }
               default:
