@@ -91,19 +91,22 @@ angular.module('ngcrop')
               case ngCropConstants.POSITIONS.TOP_RIGHT:
               {
 
-                this.x = this.allowedXMove(-xMove) ? this.x - xMove : this.x;
-                this.y = this.allowedYMove(yMove) ? this.y + yMove : this.y;
-                len = Math.abs(xMove) + Math.abs(yMove);
+                var moveRight = (xMove > 0 || yMove < 0);
+                move = Math.max(Math.abs(xMove),Math.abs(yMove));
+                this.x = moveRight && this.allowedXMove(-move) ? this.x - move : this.allowedXMove(move) ?  this.x + move : this.x ;
+                this.y = moveRight && this.allowedYMove(-move) ? this.y - move : this.allowedYMove(move) ? this.y + move : this.y;
+                len = moveRight ? (move * 2) : -(move *2);
+                this.length = this.allowedLengthMove(len) ? this.length + len : this.length;
 
-                if (xMove > 0 || yMove < 0) {
+               // if (xMove > 0 || yMove < 0) {
 
-                  this.length = this.allowedLengthMove(len) ? this.length + len : this.length;
+            //      this.length = this.allowedLengthMove(len) ? this.length + len : this.length;
 
-                } else {
+              //  } else {
 
-                  this.length = this.allowedLengthMove(-(len)) ? this.length - len : this.length;
+                //  this.length = this.allowedLengthMove(-(len)) ? this.length - len : this.length;
 
-                }
+                //}
                 break;
               }
               case ngCropConstants.POSITIONS.BOTTOM_LEFT:
