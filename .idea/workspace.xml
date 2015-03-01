@@ -24,11 +24,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="cropselection.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="cropselection.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/scripts/modules/ngcrop/cropselection.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.8545456" vertical-offset="598" max-vertical-offset="3255">
-              <caret line="65" column="29" selection-start-line="65" selection-start-column="29" selection-end-line="65" selection-end-column="29" />
+            <state vertical-scroll-proportion="0.94" vertical-offset="535" max-vertical-offset="3465">
+              <caret line="67" column="8" selection-start-line="67" selection-start-column="8" selection-end-line="67" selection-end-column="8" />
               <folding />
             </state>
           </provider>
@@ -84,11 +84,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="cropimage.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="cropimage.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/scripts/modules/ngcrop/cropimage.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.33081284" vertical-offset="230" max-vertical-offset="3015">
-              <caret line="27" column="57" selection-start-line="27" selection-start-column="57" selection-end-line="27" selection-end-column="57" />
+            <state vertical-scroll-proportion="-11.115385" vertical-offset="926" max-vertical-offset="3000">
+              <caret line="81" column="16" selection-start-line="81" selection-start-column="16" selection-end-line="81" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -98,7 +98,7 @@
         <entry file="file://$PROJECT_DIR$/app/scripts/modules/ngcrop/cropcanvas.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="540">
-              <caret line="21" column="40" selection-start-line="21" selection-start-column="31" selection-end-line="21" selection-end-column="40" />
+              <caret line="20" column="58" selection-start-line="20" selection-start-column="58" selection-end-line="20" selection-end-column="58" />
               <folding />
             </state>
           </provider>
@@ -161,7 +161,6 @@
         <option value="$PROJECT_DIR$/app/scripts/modules/projects/ngcrop-demo/imageview-directive.js" />
         <option value="$PROJECT_DIR$/app/scripts/modules/projects/ngcrop-demo/partials/imageview.html" />
         <option value="$PROJECT_DIR$/Gruntfile.js" />
-        <option value="$PROJECT_DIR$/app/scripts/modules/ngcrop/cropcanvas.js" />
         <option value="$PROJECT_DIR$/app/scripts/app-controller.js" />
         <option value="$PROJECT_DIR$/test/spec/controllers/main.js" />
         <option value="$PROJECT_DIR$/test/karma.conf.js" />
@@ -183,8 +182,9 @@
         <option value="$PROJECT_DIR$/app/scripts/modules/projects/ngcrop-demo/partials/upload.html" />
         <option value="$PROJECT_DIR$/app/scripts/modules/projects/partials/ngcropdemo.html" />
         <option value="$PROJECT_DIR$/app/styles/template.less" />
-        <option value="$PROJECT_DIR$/app/scripts/modules/ngcrop/cropselection.js" />
         <option value="$PROJECT_DIR$/app/scripts/modules/ngcrop/cropimage.js" />
+        <option value="$PROJECT_DIR$/app/scripts/modules/ngcrop/cropcanvas.js" />
+        <option value="$PROJECT_DIR$/app/scripts/modules/ngcrop/cropselection.js" />
       </list>
     </option>
   </component>
@@ -958,14 +958,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/modules/ngcrop/cropcanvas.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="540">
-          <caret line="21" column="40" selection-start-line="21" selection-start-column="31" selection-end-line="21" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/scripts/modules/projects/ngcrop-demo/partials/upload.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.75" vertical-offset="0" max-vertical-offset="285">
@@ -982,18 +974,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/modules/ngcrop/cropselection.js">
+    <entry file="file://$PROJECT_DIR$/app/scripts/modules/ngcrop/cropimage.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.8545456" vertical-offset="598" max-vertical-offset="3255">
-          <caret line="65" column="29" selection-start-line="65" selection-start-column="29" selection-end-line="65" selection-end-column="29" />
+        <state vertical-scroll-proportion="-11.115385" vertical-offset="926" max-vertical-offset="3000">
+          <caret line="81" column="16" selection-start-line="81" selection-start-column="16" selection-end-line="81" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/scripts/modules/ngcrop/cropimage.js">
+    <entry file="file://$PROJECT_DIR$/app/scripts/modules/ngcrop/cropcanvas.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.33081284" vertical-offset="230" max-vertical-offset="3015">
-          <caret line="27" column="57" selection-start-line="27" selection-start-column="57" selection-end-line="27" selection-end-column="57" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="540">
+          <caret line="20" column="58" selection-start-line="20" selection-start-column="58" selection-end-line="20" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/scripts/modules/ngcrop/cropselection.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.94" vertical-offset="535" max-vertical-offset="3465">
+          <caret line="67" column="8" selection-start-line="67" selection-start-column="8" selection-end-line="67" selection-end-column="8" />
           <folding />
         </state>
       </provider>

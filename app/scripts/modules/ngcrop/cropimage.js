@@ -79,8 +79,7 @@ angular.module('ngcrop').directive('cropImage',
             function calibrateCroppedImageData(){
 
               scope.croppedImgData = cropCanvas.getDataUrl(scope.origImage,
-                (selector.x/selector.ratio), (selector.y/selector.ratio), (selector.length/selector.ratio) ,
-                (selector.length/selector.ratio),selector.scaledWidth, selector.scaledHeight);
+                selector.scaledX, selector.scaledY, selector.scaledLength , selector.scaledWidth, selector.scaledHeight);
 
             }
 

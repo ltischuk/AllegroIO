@@ -52,6 +52,20 @@ angular.module('ngcrop')
         return this._scaledHeight;
       },
 
+      get scaledX(){
+
+        return this._x/this._ratio;
+      },
+      get scaledY(){
+
+        return this._y/this._ratio;
+
+      },
+      get scaledLength(){
+
+        return this._length/this._ratio;
+
+      },
       setScalesToImage : function(img){
 
         var imgRatio = Math.min ((this._maxLength / img.width),(this._maxLength/ img.height));
