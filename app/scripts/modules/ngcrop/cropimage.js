@@ -10,8 +10,7 @@ angular.module('ngcrop').directive('cropImage',
           scope: {
 
             origImage: '=',
-            width: '=',
-            height: '=',
+            maxImgDisplayLength: '=',
             croppedImgData: '=',
             selectorColor: '@',
             selectorLineWidth: '@'
@@ -24,10 +23,9 @@ angular.module('ngcrop').directive('cropImage',
             scope.selectorLineWidth = angular.isDefined(scope.selectorLineWidth) && angular.isNumber(Number(scope.selectorLineWidth)) ? Number(scope.selectorLineWidth) : 2;
 
             var cvs = element.find('canvas');
-            var canvasWidth = angular.isDefined(scope.width) && angular.isNumber(Number(scope.width))? Number(scope.width) : 300;
-            var canvasHeight = angular.isDefined(scope.height) && angular.isNumber(Number(scope.height)) ? Number(scope.height) : 300;
+            var canvasLength = angular.isDefined(scope.maxImgDisplayLength) && angular.isNumber(Number(scope.maxImgDisplayLength))? Number(scope.maxImgDisplayLength) : 300;
             var ctx = cvs[0].getContext('2d');
-            var selector = new CropSelection();
+            var selector = new CropSelection(canvasLength);
             var cropCanvas = new CropCanvas();
             var isSelecting = false;
             var moveCorner = false;
@@ -41,9 +39,9 @@ angular.module('ngcrop').directive('cropImage',
 
                 if(angular.isDefined(newImage)){
 
-                  cvs[0].width = scope.width ? scope.width : newImage.width;
-                  cvs[0].height = scope.height ? scope.height : newImage.height;
-                  selector.setScalesToImage(newImage, cvs[0].width);
+                  selector.setScalesToImage(newImage);
+                  cvs[0].width = selector.scaledWidth;
+                  cvs[0].height = selector.scaledHeight;
                   drawImageOnCanvas();
                   calibrateCroppedImageData();
 
@@ -68,7 +66,7 @@ angular.module('ngcrop').directive('cropImage',
 
               //draw the image to the canvas
               ctx.drawImage(scope.origImage,sX,sY,sWidth,sHeight,0,0,drawWidth,drawHeight);
-              ctx.lineWidth = selector.lineWidth;
+              ctx.lineWidth = scope.selectorLineWidth;
               ctx.strokeStyle = scope.selectorColor;
               ctx.strokeRect(selector.x,selector.y,selector.length,selector.length);
 
@@ -117,7 +115,7 @@ angular.module('ngcrop').directive('cropImage',
               }
               else{
                 cvs[0].style.cursor = 'crosshair';
-                corner =selector.nearestCorner(mouseX, mouseY);
+                corner = selector.nearestCorner(mouseX, mouseY);
                 moveCorner = true;
 
               }

@@ -4,64 +4,96 @@
 angular.module('ngcrop')
   .factory('CropSelection', function CropSelectionFactory(ngCropConstants) {
 
-    function CropSelection(maxWidth, maxHeight){
+    function CropSelection(maxLength){
 
-      this.x = 0;
-      this.y = 0;
-      this.length = 0;
-      this.paddedPixels = 2;
-      this.ratio = 1;
-      this.scaledWidth = 1;
-      this.scaledHeight = 1;
-      this.maxWidth = angular.isDefined(maxWidth) ? maxWidth : 0;
-      this.maxHeight = angular.isDefined(maxHeight) ? maxHeight : 0;
-      this.currentCorner = 0;
+      this._x = 0;
+      this._y = 0;
+      this._length = 0;
+      this._paddedPixels = 2;
+      this._ratio = 1;
+      this._scaledWidth = 1;
+      this._scaledHeight = 1;
+      this._maxLength = maxLength;
+      this._maxWidth = 0;
+      this._maxHeight = 0;
+      this._currentCorner = 0;
 
     }
 
     CropSelection.prototype = {
 
-      setScalesToImage : function(img, newWidth){
+      get x(){
 
-        this.ratio = (this.maxWidth > 0 && this.maxHeight > 0) ? Math.min ((this.maxWidth / img.width),(this.maxHeight/ img.height)): 1;
-        this.scaledWidth = img.width * this.ratio;
-        this.scaledHeight = img.height * this.ratio;
-        this.maxWidth = this.scaledWidth - this.paddedPixels;
-        this.maxHeight = this.scaledHeight - this.paddedPixels;
-        var dim = Math.min(this.scaledWidth,this.scaledHeight);
-        this.x = (newWidth / 2) - (dim/4);
-        this.y = dim/4;
-        this.length = dim/2;
+        return this._x;
+
+      },
+      get y(){
+
+        return this._y;
+
+      },
+      get length(){
+
+        return this._length;
+
+      },
+      get ratio(){
+
+        return this._ratio;
+
+      },
+      get scaledWidth(){
+
+        return this._scaledWidth;
+
+      },
+      get scaledHeight(){
+
+        return this._scaledHeight;
+      },
+
+      setScalesToImage : function(img){
+
+        var imgRatio = Math.min ((this._maxLength / img.width),(this._maxLength/ img.height));
+        this._ratio = imgRatio > 1 ? 1 : imgRatio;
+        this._scaledWidth = img.width * this._ratio;
+        this._scaledHeight = img.height * this._ratio;
+        this._maxWidth = this._scaledWidth - this._paddedPixels;
+        this._maxHeight = this._scaledHeight - this._paddedPixels;
+        var dim = Math.min(this._scaledWidth,this._scaledHeight);
+        this._x = (this._maxWidth / 2) - (dim/4);
+        this._y = dim/4;
+        this._length = dim/2;
 
       },
       isInMoveZone : function(pointX, pointY){
 
-        var partial = this.length /6;
-        var maxBound = this.length - partial;
-        if(pointX >= (this.x + partial) && pointX <= (this.x + maxBound) &&
-          pointY >= (this.y + partial) && pointY <= (this.y + maxBound)){
+        var partial = this._length /6;
+        var maxBound = this._length - partial;
+        if(pointX >= (this._x + partial) && pointX <= (this._x + maxBound) &&
+          pointY >= (this._y + partial) && pointY <= (this._y + maxBound)){
 
           return true;
         }
         return false;
       },
       allowedLengthMove: function(acc){
-        if(this.x + (this.length + acc) > (this.maxWidth) || this.y + (this.length + acc) > (this.maxHeight) ||
-          this.length + acc < 0 ){
+        if(this._x + (this._length + acc) > (this._maxWidth) || this._y + (this._length + acc) > (this._maxHeight) ||
+          this._length + acc < 0 ){
           return false;
 
         }
         return true;
       },
       allowedXMove : function(acc){
-        if((acc + this.x) < this.paddedPixels || (this.x + acc + this.length) > this.maxWidth){
+        if((acc + this._x) < this._paddedPixels || (this._x + acc + this._length) > this._maxWidth){
           return false;
         }
         return true;
       },
       allowedYMove : function(acc){
-        if((acc + this.y) < this.paddedPixels || (this.y + acc + this.length) > this.maxHeight ||
-          (this.length - Math.abs(acc)) <= 0){
+        if((acc + this._y) < this._paddedPixels || (this._y + acc + this._length) > this._maxHeight ||
+          (this._length - Math.abs(acc)) <= 0){
           return false;
         }
         return true;
@@ -73,7 +105,7 @@ angular.module('ngcrop')
           var move = 0;
           var len = 0;
 
-          if(this.currentCorner == cornerPosition){
+          if(this._currentCorner == cornerPosition){
 
             switch(cornerPosition) {
 
@@ -82,9 +114,9 @@ angular.module('ngcrop')
 
                 move = Math.max(xMove, yMove) > 0 ? Math.max(xMove, yMove) : Math.min(xMove, yMove);
                 len = -(move * 2);
-                this.x = this.allowedXMove(move) ? this.x + move : this.x;
-                this.y = this.allowedYMove(move) ? this.y + move : this.y;
-                this.length = (this.allowedLengthMove(len) ? (this.length + len) : this.length);
+                this._x = this.allowedXMove(move) ? this._x + move : this._x;
+                this._y = this.allowedYMove(move) ? this._y + move : this._y;
+                this._length = (this.allowedLengthMove(len) ? (this._length + len) : this._length);
                 break;
 
               }
@@ -93,20 +125,10 @@ angular.module('ngcrop')
 
                 var moveRight = (xMove > 0 || yMove < 0);
                 move = Math.max(Math.abs(xMove),Math.abs(yMove));
-                this.x = moveRight && this.allowedXMove(-move) ? this.x - move : this.allowedXMove(move) ?  this.x + move : this.x ;
-                this.y = moveRight && this.allowedYMove(-move) ? this.y - move : this.allowedYMove(move) ? this.y + move : this.y;
+                this._x = moveRight && this.allowedXMove(-move) ? this._x - move : this.allowedXMove(move) ?  this._x + move : this._x ;
+                this._y = moveRight && this.allowedYMove(-move) ? this._y - move : this.allowedYMove(move) ? this._y + move : this._y;
                 len = moveRight ? (move * 2) : -(move *2);
-                this.length = this.allowedLengthMove(len) ? this.length + len : this.length;
-
-               // if (xMove > 0 || yMove < 0) {
-
-            //      this.length = this.allowedLengthMove(len) ? this.length + len : this.length;
-
-              //  } else {
-
-                //  this.length = this.allowedLengthMove(-(len)) ? this.length - len : this.length;
-
-                //}
+                this._length = this.allowedLengthMove(len) ? this._length + len : this._length;
                 break;
               }
               case ngCropConstants.POSITIONS.BOTTOM_LEFT:
@@ -114,24 +136,10 @@ angular.module('ngcrop')
 
                 var moveLeft = (xMove < 0 || yMove > 0);
                 move = Math.min(Math.abs(xMove),Math.abs(yMove));
-                this.x = moveLeft && this.allowedXMove(-move) ? this.x - move : this.allowedXMove(move) ?  this.x + move : this.x ;
-                this.y = moveLeft && this.allowedYMove(-move) ? this.y - move : this.allowedYMove(move) ? this.y + move : this.y;
+                this._x = moveLeft && this.allowedXMove(-move) ? this._x - move : this.allowedXMove(move) ?  this._x + move : this._x ;
+                this._y = moveLeft && this.allowedYMove(-move) ? this._y - move : this.allowedYMove(move) ? this._y + move : this._y;
                 len = moveLeft ? (move * 2) : -(move *2);
-                this.length = this.allowedLengthMove(len) ? this.length + len : this.length;
-
-               // this.x = this.allowedXMove(xMove) ? (this.x + xMove) : this.x;
-               // this.y = this.allowedYMove(-yMove) ? this.y - yMove : this.y;
-               // len = Math.abs(xMove) + Math.abs(yMove);
-
-               // if (xMove < 0 || yMove > 0) {
-
-                 // this.length = this.allowedLengthMove(len) ? this.length + len : this.length;
-
-               // } else {
-
-//                  this.length = this.allowedLengthMove(-(len)) ? this.length - len : this.length;
-
-  //              }
+                this._length = this.allowedLengthMove(len) ? this._length + len : this._length;
                 break;
               }
               default:
@@ -139,26 +147,26 @@ angular.module('ngcrop')
 
                 move = Math.max(xMove, yMove) > 0 ? Math.max(xMove, yMove) : Math.min(xMove, yMove);
                 len = move * 2;
-                this.x = this.allowedXMove(-move) ? this.x - move : this.x;
-                this.y = this.allowedYMove(-move) ? this.y - move : this.y;
-                this.length = (this.allowedLengthMove(len) ? (this.length + len) : this.length);
+                this._x = this.allowedXMove(-move) ? this._x - move : this._x;
+                this._y = this.allowedYMove(-move) ? this._y - move : this._y;
+                this._length = (this.allowedLengthMove(len) ? (this._length + len) : this._length);
 
               }
             }
           }
 
         }else{
-          this.x = this.allowedXMove(xMove) ? this.x + xMove : this.x;
-          this.y = this.allowedYMove(yMove) ? this.y + yMove : this.y;
+          this._x = this.allowedXMove(xMove) ? this._x + xMove : this._x;
+          this._y = this.allowedYMove(yMove) ? this._y + yMove : this._y;
         }
 
       },
       nearestCorner: function(mouseX, mouseY){
 
-        var pxFromXLeft = Math.abs(mouseX - this.x);
-        var pxFromXRight = Math.abs(mouseX - (this.x + this.length));
-        var pxFromYTop = Math.abs(mouseY - this.y);
-        var pxFromYBottom = Math.abs(mouseY - (this.y + this.length));
+        var pxFromXLeft = Math.abs(mouseX - this._x);
+        var pxFromXRight = Math.abs(mouseX - (this._x + this._length));
+        var pxFromYTop = Math.abs(mouseY - this._y);
+        var pxFromYBottom = Math.abs(mouseY - (this._y + this._length));
 
         var topLeft = pxFromXLeft + pxFromYTop;
         var topRight = pxFromXRight + pxFromYTop;
@@ -190,7 +198,7 @@ angular.module('ngcrop')
       },
       setCurrentCorner: function(mouseX, mouseY){
 
-        this.currentCorner = this.nearestCorner(mouseX, mouseY);
+        this._currentCorner = this.nearestCorner(mouseX, mouseY);
 
       }
 
