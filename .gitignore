@@ -5,3 +5,4 @@ dist
 .iml
 .name
 bower_components
+*.DS_Store
