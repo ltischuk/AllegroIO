@@ -75,8 +75,9 @@ angular.module('ngcrop')
         this._maxWidth = this._scaledWidth - this._paddedPixels;
         this._maxHeight = this._scaledHeight - this._paddedPixels;
         var dim = Math.min(this._scaledWidth,this._scaledHeight);
-        this._x = (this._maxWidth / 2) - (dim/4);
-        this._y = dim/4;
+        var qtrDim = dim/4;
+        this._x = (this._maxWidth / 2) - qtrDim;
+        this._y = qtrDim;
         this._length = dim/2;
 
       },
@@ -91,7 +92,7 @@ angular.module('ngcrop')
         }
         return false;
       },
-      allowedLengthMove: function(acc){
+      _allowedLengthMove: function(acc){
         if(this._x + (this._length + acc) > (this._maxWidth) || this._y + (this._length + acc) > (this._maxHeight) ||
           this._length + acc < 0 ){
           return false;
@@ -99,13 +100,13 @@ angular.module('ngcrop')
         }
         return true;
       },
-      allowedXMove : function(acc){
+      _allowedXMove : function(acc){
         if((acc + this._x) < this._paddedPixels || (this._x + acc + this._length) > this._maxWidth){
           return false;
         }
         return true;
       },
-      allowedYMove : function(acc){
+      _allowedYMove : function(acc){
         if((acc + this._y) < this._paddedPixels || (this._y + acc + this._length) > this._maxHeight ||
           (this._length - Math.abs(acc)) <= 0){
           return false;
@@ -115,6 +116,8 @@ angular.module('ngcrop')
       move : function(xMove,yMove, isCorner, cornerPosition){
 
         if(isCorner){
+
+          //expand or collapse selector square depending on movement and which corner
 
           var move = 0;
           var len = 0;
@@ -128,9 +131,9 @@ angular.module('ngcrop')
 
                 move = Math.max(xMove, yMove) > 0 ? Math.max(xMove, yMove) : Math.min(xMove, yMove);
                 len = -(move * 2);
-                this._x = this.allowedXMove(move) ? this._x + move : this._x;
-                this._y = this.allowedYMove(move) ? this._y + move : this._y;
-                this._length = (this.allowedLengthMove(len) ? (this._length + len) : this._length);
+                this._x = this._allowedXMove(move) ? this._x + move : this._x;
+                this._y = this._allowedYMove(move) ? this._y + move : this._y;
+                this._length = (this._allowedLengthMove(len) ? (this._length + len) : this._length);
                 break;
 
               }
@@ -139,10 +142,10 @@ angular.module('ngcrop')
 
                 var moveRight = (xMove > 0 || yMove < 0);
                 move = Math.max(Math.abs(xMove),Math.abs(yMove));
-                this._x = moveRight && this.allowedXMove(-move) ? this._x - move : this.allowedXMove(move) ?  this._x + move : this._x ;
-                this._y = moveRight && this.allowedYMove(-move) ? this._y - move : this.allowedYMove(move) ? this._y + move : this._y;
                 len = moveRight ? (move * 2) : -(move *2);
-                this._length = this.allowedLengthMove(len) ? this._length + len : this._length;
+                this._x = moveRight && this._allowedXMove(-move) ? this._x - move : this._allowedXMove(move) ?  this._x + move : this._x ;
+                this._y = moveRight && this._allowedYMove(-move) ? this._y - move : this._allowedYMove(move) ? this._y + move : this._y;
+                this._length = this._allowedLengthMove(len) ? this._length + len : this._length;
                 break;
               }
               case ngCropConstants.POSITIONS.BOTTOM_LEFT:
@@ -150,10 +153,10 @@ angular.module('ngcrop')
 
                 var moveLeft = (xMove < 0 || yMove > 0);
                 move = Math.min(Math.abs(xMove),Math.abs(yMove));
-                this._x = moveLeft && this.allowedXMove(-move) ? this._x - move : this.allowedXMove(move) ?  this._x + move : this._x ;
-                this._y = moveLeft && this.allowedYMove(-move) ? this._y - move : this.allowedYMove(move) ? this._y + move : this._y;
                 len = moveLeft ? (move * 2) : -(move *2);
-                this._length = this.allowedLengthMove(len) ? this._length + len : this._length;
+                this._x = moveLeft && this._allowedXMove(-move) ? this._x - move : this._allowedXMove(move) ?  this._x + move : this._x ;
+                this._y = moveLeft && this._allowedYMove(-move) ? this._y - move : this._allowedYMove(move) ? this._y + move : this._y;
+                this._length = this._allowedLengthMove(len) ? this._length + len : this._length;
                 break;
               }
               default:
@@ -161,17 +164,18 @@ angular.module('ngcrop')
 
                 move = Math.max(xMove, yMove) > 0 ? Math.max(xMove, yMove) : Math.min(xMove, yMove);
                 len = move * 2;
-                this._x = this.allowedXMove(-move) ? this._x - move : this._x;
-                this._y = this.allowedYMove(-move) ? this._y - move : this._y;
-                this._length = (this.allowedLengthMove(len) ? (this._length + len) : this._length);
+                this._x = this._allowedXMove(-move) ? this._x - move : this._x;
+                this._y = this._allowedYMove(-move) ? this._y - move : this._y;
+                this._length = (this._allowedLengthMove(len) ? (this._length + len) : this._length);
 
               }
             }
           }
 
         }else{
-          this._x = this.allowedXMove(xMove) ? this._x + xMove : this._x;
-          this._y = this.allowedYMove(yMove) ? this._y + yMove : this._y;
+          //move entire selector square
+          this._x = this._allowedXMove(xMove) ? this._x + xMove : this._x;
+          this._y = this._allowedYMove(yMove) ? this._y + yMove : this._y;
         }
 
       },
