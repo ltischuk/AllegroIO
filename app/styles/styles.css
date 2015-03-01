@@ -170,12 +170,16 @@
 }
 .ng-crop-demo #main-ngcrop-area-view .bottom-button-row {
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 .project-list a {
   cursor: pointer;
 }
 .top-30-margin {
   margin-top: 30px;
+}
+.bottom-20-margin {
+  margin-bottom: 20px;
 }
 .btn-deep-red {
   background-color: #CD0000;

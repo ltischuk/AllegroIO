@@ -18,7 +18,7 @@
           <img data-ng-src="{{croppedImageDataUrl}}" data-ng-show="!isReadyForCrop" height="200px" width="200px">
         </div>
         <div class="bottom-button-row">
-          <div class="col-sm-6 col-sm-offset-3" data-ng-show="isReadyForCrop">
+          <div class="col-sm-4 col-sm-offset-4 bottom-20-margin" data-ng-show="isReadyForCrop">
             <button
               on-tap
               class="btn btn-deep-red btn-block"
@@ -26,7 +26,7 @@
               data-ng-bind="cropBtnLabel">
             </button>
           </div>
-          <div class="col-sm-6 col-sm-offset-3" data-ng-show="!isReadyForCrop">
+          <div class="col-sm-4 col-sm-offset-4 bottom-20-margin" data-ng-show="!isReadyForCrop">
             <button
               on-tap
               class="btn btn-deep-red btn-block"
