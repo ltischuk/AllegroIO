@@ -133,7 +133,6 @@ angular.module('ngcrop')
                 len = -(move * 2);
                 this._x = this._allowedXMove(move) ? this._x + move : this._x;
                 this._y = this._allowedYMove(move) ? this._y + move : this._y;
-                this._length = (this._allowedLengthMove(len) ? (this._length + len) : this._length);
                 break;
 
               }
@@ -145,7 +144,6 @@ angular.module('ngcrop')
                 len = moveRight ? (move * 2) : -(move *2);
                 this._x = moveRight && this._allowedXMove(-move) ? this._x - move : this._allowedXMove(move) ?  this._x + move : this._x ;
                 this._y = moveRight && this._allowedYMove(-move) ? this._y - move : this._allowedYMove(move) ? this._y + move : this._y;
-                this._length = this._allowedLengthMove(len) ? this._length + len : this._length;
                 break;
               }
               case ngCropConstants.POSITIONS.BOTTOM_LEFT:
@@ -154,9 +152,8 @@ angular.module('ngcrop')
                 var moveLeft = (xMove < 0 || yMove > 0);
                 move = Math.max(Math.abs(xMove),Math.abs(yMove));
                 len = moveLeft ? (move * 2) : -(move *2);
-                this._x = moveLeft && this._allowedXMove(-move) ? this._x - move : this._allowedXMove(move) ?  this._x + move : this._x ;
-                this._y = moveLeft && this._allowedYMove(-move) ? this._y - move : this._allowedYMove(move) ? this._y + move : this._y;
-                this._length = this._allowedLengthMove(len) ? this._length + len : this._length;
+                this._x = (moveLeft && this._allowedXMove(-move)) ? this._x - move : this._allowedXMove(move) ?  this._x + move : this._x ;
+                this._y = (moveLeft && this._allowedYMove(-move)) ? this._y - move : this._allowedYMove(move) ? this._y + move : this._y;
                 break;
               }
               default:
@@ -166,10 +163,11 @@ angular.module('ngcrop')
                 len = move * 2;
                 this._x = this._allowedXMove(-move) ? this._x - move : this._x;
                 this._y = this._allowedYMove(-move) ? this._y - move : this._y;
-                this._length = (this._allowedLengthMove(len) ? (this._length + len) : this._length);
+                break;
 
               }
             }
+            this._length = (this._allowedLengthMove(len) ? (this._length + len) : this._length);
           }
 
         }else{
