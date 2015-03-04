@@ -152,7 +152,7 @@ angular.module('ngcrop')
               {
 
                 var moveLeft = (xMove < 0 || yMove > 0);
-                move = Math.min(Math.abs(xMove),Math.abs(yMove));
+                move = Math.max(Math.abs(xMove),Math.abs(yMove));
                 len = moveLeft ? (move * 2) : -(move *2);
                 this._x = moveLeft && this._allowedXMove(-move) ? this._x - move : this._allowedXMove(move) ?  this._x + move : this._x ;
                 this._y = moveLeft && this._allowedYMove(-move) ? this._y - move : this._allowedYMove(move) ? this._y + move : this._y;
