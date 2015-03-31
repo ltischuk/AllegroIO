@@ -83,6 +83,7 @@ angular.module('ngcrop')
       },
       isInMoveZone : function(pointX, pointY){
 
+        //a 6th of the square length from each side will
         var partial = this._length /6;
         var maxBound = this._length - partial;
         if(pointX >= (this._x + partial) && pointX <= (this._x + maxBound) &&
@@ -118,7 +119,6 @@ angular.module('ngcrop')
         if(isCorner){
 
           //expand or collapse selector square depending on movement and which corner
-
           var move = 0;
           var len = 0;
 

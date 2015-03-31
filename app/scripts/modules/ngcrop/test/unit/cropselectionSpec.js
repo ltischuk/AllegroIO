@@ -17,13 +17,12 @@ describe('Factory: CropSelection', function() {
 
   }));
 
-  it("should instantiate a crop selection and set max dims to 0", function() {
+  it("should instantiate a crop selection", function() {
     //Setup initialized data prior to cases
 
     var cropSelector = new CropSelection();
     //ensure that only uniquely named stepped views can be added and name must be a string
-    expect(cropSelector.maxHeight).toEqual(0);
-    expect(cropSelector.maxWidth).toEqual(0);
+    expect(cropSelector.length).toEqual(0);
 
   });
 
