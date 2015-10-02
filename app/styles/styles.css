@@ -23,10 +23,7 @@
   margin: 25px 10px 75px 10px;
 }
 .main-image-container .main-image-header {
-  color: #faebd7;
   margin-bottom: 20px;
-  font-family: 'Jura', sans-serif;
-  font-size: 3em;
 }
 .center-content {
   margin-left: auto;
@@ -37,6 +34,14 @@
 }
 .no-margin {
   margin: 0px;
+}
+.section-header {
+  color: #faebd7;
+  font-family: 'Jura', sans-serif;
+  font-size: 3em;
+}
+.selection-container {
+  min-height: 300px;
 }
 /* Make the masthead heading the same height as the navigation */
 #navbar-container {
