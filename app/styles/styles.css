@@ -1,3 +1,4 @@
+@import url(https://fonts.googleapis.com/css?family=Jura:600);
 .site-background {
   background-image: url("../images/sitebackground.png");
 }
@@ -7,7 +8,7 @@
 }
 /* Custom page footer */
 .footer {
-  color: #777;
+  color: #faebd7;
   border-top: 1px solid #e5e5e5;
 }
 /* Customize container */
@@ -17,20 +18,15 @@
   }
 }
 /* Main marketing message and sign up button */
-.jumbotron {
+.main-image-container {
   text-align: center;
-  border-bottom: 1px solid #e5e5e5;
-  background-color: #ece4d0;
+  margin: 25px 10px 75px 10px;
 }
-.jumbotron .btn {
-  font-size: 21px;
-}
-/* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
-  /* Remove the bottom border on the jumbotron for visual effect */
-  .jumbotron {
-    border-bottom: 0;
-  }
+.main-image-container .main-image-header {
+  color: #faebd7;
+  margin-bottom: 20px;
+  font-family: 'Jura', sans-serif;
+  font-size: 3em;
 }
 .center-content {
   margin-left: auto;
@@ -135,7 +131,7 @@
   text-shadow: 0 2px 1px rgba(0, 0, 0, 0.5);
   display: block;
   text-decoration: none;
-  color: #ffffff;
+  color: #faebd7;
   font-size: 1.2em;
   margin: 0 .5em;
 }
